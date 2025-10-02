@@ -15,8 +15,10 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
     private Boolean blinked = false;
     private Boolean blinking = false;
     [SerializeField] private Color blinkColor;
+    [SerializeField] float KnockBackAmount = 2;
     Rigidbody2D rb;
     SpriteRenderer sp;
+    Status stat;
     GameObject player;
 
 
@@ -28,6 +30,7 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
 
     void Start()
     {
+        stat = GetComponent<Status>();
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
         player = PlayerMove.FindFirstObjectByType<PlayerMove>().gameObject;
@@ -35,34 +38,47 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
         explodeTimer = explodeTime;
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-        playerPos = player.transform.position;
-        enemyPos = gameObject.transform.position;
-        if (Vector2.Distance(playerPos, enemyPos) < visionRange)
+        if (!stat.KnockedBack)
         {
-            directionToPlayer = playerPos - enemyPos;
-            checkExplode();
-            if (exploding)
+            playerPos = player.transform.position;
+            enemyPos = gameObject.transform.position;
+            if (Vector2.Distance(playerPos, enemyPos) < visionRange)
             {
-                if (explodeTimer < 0)
+                directionToPlayer = playerPos - enemyPos;
+                checkExplode();
+                if (exploding)
                 {
-                    Explode();
-                }
-                else
-                {
-                    if (!blinking)
+                    if (explodeTimer < 0)
                     {
-                        InvokeRepeating("Blink", 0, 1f / blinkingRate);
-                        blinking = true;
+                        Explode();
                     }
-                    explodeTimer -= Time.deltaTime;
+                    else
+                    {
+                        if (!blinking)
+                        {
+                            InvokeRepeating("Blink", 0, 1f / blinkingRate);
+                            blinking = true;
+                        }
+                        explodeTimer -= Time.deltaTime;
+                    }
+                    rb.linearVelocity = Vector2.zero;
                 }
-                rb.linearVelocity = Vector2.zero;
             }
         }
-        
+        else
+        {
+            Vector2 direction = (gameObject.transform.position -
+            player.transform.position).normalized;
+            rb.AddForce(KnockBackAmount * direction);
+            //Debug.Log("Here");
+            Vector2 pos = gameObject.transform.position;
+            Debug.DrawLine(gameObject.transform.position, pos + (direction * 3));
+            /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
+            + " : " + direction);*/
+        }
     }
 
     void FixedUpdate()

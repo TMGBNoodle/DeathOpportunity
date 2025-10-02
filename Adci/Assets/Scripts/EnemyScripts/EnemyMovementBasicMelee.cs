@@ -3,9 +3,13 @@ using UnityEngine;
 public class EnemyMovementBasicMelee : MonoBehaviour
 {
     Rigidbody2D rb;
+    Status stat;
+    private GameObject player;
 
     [SerializeField] private int maxSpeed = 3;
     [SerializeField] private float acceleration = 1;
+
+    [SerializeField] float KnockBackAmount = 2;
 
     private Vector2 Direction = Vector2.left;
 
@@ -13,13 +17,29 @@ public class EnemyMovementBasicMelee : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        print(rb);
+        stat = GetComponent<Status>();
+        player = PlayerMove.FindFirstObjectByType<PlayerMove>().gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = maxSpeed * Direction + new Vector2(0, rb.linearVelocityY);
+        if (!stat.KnockedBack)
+        {
+            rb.linearVelocity = maxSpeed * Direction + new Vector2(0, rb.linearVelocityY);
+        }
+        else
+        {
+            Vector2 direction = (gameObject.transform.position -
+            player.transform.position).normalized;
+            rb.AddForce(KnockBackAmount * direction);
+            //Debug.Log("Here");
+            Vector2 pos = gameObject.transform.position;
+            Debug.DrawLine(gameObject.transform.position, pos + (direction * 3));
+            /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
+            + " : " + direction);*/
+        }
+        
     }
 
     void changeDirection()
@@ -46,6 +66,10 @@ public class EnemyMovementBasicMelee : MonoBehaviour
         {
             changeDirection();
             Debug.Log("Hit");
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            attack();
         }
     }
 }

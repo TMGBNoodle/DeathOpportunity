@@ -10,6 +10,7 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     [SerializeField] float visionRange = 10;
     [SerializeField] GameObject player;
 
+
     Vector2 playerPos;
     Vector2 enemyPos;
 
@@ -23,11 +24,13 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
 
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed = 0.5f;
+    [SerializeField] float KnockBackAmount = 100;
 
     private float attackDelay = 2;
     private float attackTimer = 0;
 
     Rigidbody2D rb;
+    Status stat;
 
     Boolean approaching = true;
 
@@ -38,18 +41,33 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = PlayerMove.FindFirstObjectByType<PlayerMove>().gameObject;
         speed = maxSpeed;
+        stat = GetComponent<Status>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerPos = player.transform.position;
-        enemyPos = gameObject.transform.position;
-        if (Vector2.Distance(playerPos, enemyPos) < visionRange)
+        if (!stat.KnockedBack)
         {
-            directionToPlayer = playerPos - enemyPos;
-            Move();
-            attack();
+            playerPos = player.transform.position;
+            enemyPos = gameObject.transform.position;
+            if (Vector2.Distance(playerPos, enemyPos) < visionRange)
+            {
+                directionToPlayer = playerPos - enemyPos;
+                Move();
+                attack();
+            }
+        }
+        else
+        {
+            Vector2 direction = (gameObject.transform.position -
+            player.transform.position).normalized;
+            rb.AddForce(KnockBackAmount * direction);
+            //Debug.Log("Here");
+            Vector2 pos = gameObject.transform.position;
+            Debug.DrawLine(gameObject.transform.position, pos + (direction * 3));
+            /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
+            + " : " + direction);*/
         }
     }
 
