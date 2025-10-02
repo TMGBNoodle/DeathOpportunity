@@ -1,16 +1,41 @@
+using System;
 using UnityEngine;
+
+public enum Enemies
+{
+    Goomba,
+    Fly,
+    Boombee
+}
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
+    public Boolean[] Seen = new Boolean[Enemies.GetNames(typeof(Enemies)).Length];
+    public Boolean[] DiedTo = new Boolean[Enemies.GetNames(typeof(Enemies)).Length];
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destroy duplicate instances
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Optional: Persist across scene loads
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
