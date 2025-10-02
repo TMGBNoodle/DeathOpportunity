@@ -59,14 +59,18 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
                     }
                     explodeTimer -= Time.deltaTime;
                 }
+                rb.linearVelocity = Vector2.zero;
             }
         }
         
     }
 
     void FixedUpdate()
-    { 
-        Move();
+    {
+        if (!exploding)
+        {
+            Move();
+        }
     }
 
     void Blink()
