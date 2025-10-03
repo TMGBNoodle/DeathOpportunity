@@ -575,31 +575,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3700808910088308116, guid: 7e800c6407521799090e7f04fec30eb6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 950550351}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e800c6407521799090e7f04fec30eb6, type: 3}
---- !u!1 &950550350 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3700808910088308116, guid: 7e800c6407521799090e7f04fec30eb6, type: 3}
-  m_PrefabInstance: {fileID: 950550349}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &950550351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950550350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd3daa964067eeac0b122ad4d563853a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 50
-  knockBackLength: 0.5
-  KnockedBack: 0
 --- !u!1001 &1020154346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -964,10 +941,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goomba
       objectReference: {fileID: 0}
-    - target: {fileID: 6298014385129908734, guid: 069ed7ed504e9857ab4da3b71e848b4d, type: 3}
-      propertyPath: KnockBackAmount
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 9068526347786579750, guid: 069ed7ed504e9857ab4da3b71e848b4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.48
@@ -1011,31 +984,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5416502088944833034, guid: 069ed7ed504e9857ab4da3b71e848b4d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1574619674}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 069ed7ed504e9857ab4da3b71e848b4d, type: 3}
---- !u!1 &1574619673 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5416502088944833034, guid: 069ed7ed504e9857ab4da3b71e848b4d, type: 3}
+--- !u!114 &1574619674 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 966020790567130658, guid: 069ed7ed504e9857ab4da3b71e848b4d, type: 3}
   m_PrefabInstance: {fileID: 1574619672}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1574619674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574619673}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd3daa964067eeac0b122ad4d563853a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 50
-  knockBackLength: 0.1
-  KnockedBack: 0
 --- !u!1 &1830370777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,31 +1429,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6453425070207013692, guid: 0cd5d14725576fc1bb4285c474ab5a32, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6511420289647740864}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cd5d14725576fc1bb4285c474ab5a32, type: 3}
---- !u!1 &6511420289647740863 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6453425070207013692, guid: 0cd5d14725576fc1bb4285c474ab5a32, type: 3}
-  m_PrefabInstance: {fileID: 6511420289647740862}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6511420289647740864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6511420289647740863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd3daa964067eeac0b122ad4d563853a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 50
-  knockBackLength: 0.5
-  KnockedBack: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

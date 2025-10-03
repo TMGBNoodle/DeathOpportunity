@@ -31,6 +31,8 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
 
     Rigidbody2D rb;
     Status stat;
+    Animator anim;
+    SpriteRenderer sp;
 
     Boolean approaching = true;
 
@@ -42,30 +44,45 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         player = PlayerMove.FindFirstObjectByType<PlayerMove>().gameObject;
         speed = maxSpeed;
         stat = GetComponent<Status>();
+        anim = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
+    }
+
+    void flipSprite()
+    { 
+        if (directionToPlayer.x > 0)
+        {
+            sp.flipX = true;
+        }
+        else
+        { 
+            sp.flipX = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        flipSprite();
         if (!stat.KnockedBack)
         {
             playerPos = player.transform.position;
             enemyPos = gameObject.transform.position;
             if (Vector2.Distance(playerPos, enemyPos) < visionRange)
             {
-                directionToPlayer = playerPos - enemyPos;
+                directionToPlayer = (playerPos - enemyPos).normalized;
                 Move();
                 attack();
             }
         }
         else
         {
-            Vector2 direction = (gameObject.transform.position -
+            directionToPlayer = (gameObject.transform.position -
             player.transform.position).normalized;
-            rb.AddForce(KnockBackAmount * direction);
+            rb.AddForce(KnockBackAmount * directionToPlayer);
             //Debug.Log("Here");
             Vector2 pos = gameObject.transform.position;
-            Debug.DrawLine(gameObject.transform.position, pos + (direction * 3));
+            Debug.DrawLine(gameObject.transform.position, pos + (directionToPlayer * 3));
             /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
             + " : " + direction);*/
         }
@@ -73,6 +90,7 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
 
     void Move()
     {
+        
         if (approaching)
         {
             directionToPlayer = playerPos - enemyPos;
@@ -100,6 +118,7 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     {
         if (!approaching && attackTimer < 0.0001)
         {
+            anim.SetTrigger("Attacking");
             GameObject go = Instantiate(projectile, enemyPos, Quaternion.Euler(directionToPlayer.x,
              directionToPlayer.y, 0));
             go.GetComponent<Rigidbody2D>().linearVelocity = directionToPlayer * speed;

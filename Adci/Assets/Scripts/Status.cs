@@ -6,7 +6,7 @@ public class Status : MonoBehaviour
     [SerializeField] float Health = 50;
 
 
-    [SerializeField] float knockBackLength = 0.5f;
+    [SerializeField] float knockBackLength = 0.1f;
 
     public Boolean KnockedBack = false;
 

@@ -5,6 +5,8 @@ public class EnemyMovementBasicMelee : MonoBehaviour
     Rigidbody2D rb;
     Status stat;
     private GameObject player;
+    SpriteRenderer sp;
+    Animator anim;
 
     [SerializeField] private int maxSpeed = 3;
     [SerializeField] private float acceleration = 1;
@@ -19,11 +21,26 @@ public class EnemyMovementBasicMelee : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         stat = GetComponent<Status>();
         player = PlayerMove.FindFirstObjectByType<PlayerMove>().gameObject;
+        sp = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+    }
+
+    void flipSprite()
+    { 
+        if (rb.linearVelocityX > 0)
+        {
+            sp.flipX = true;
+        }
+        else
+        { 
+            sp.flipX = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        flipSprite();
         if (!stat.KnockedBack)
         {
             rb.linearVelocity = maxSpeed * Direction + new Vector2(0, rb.linearVelocityY);
@@ -49,7 +66,7 @@ public class EnemyMovementBasicMelee : MonoBehaviour
 
     void attack()
     {
-
+        anim.SetTrigger("Attack");
         RaycastHit2D hit = Physics2D.Raycast(rb.position, -transform.right, 1);
         if (hit)
         {

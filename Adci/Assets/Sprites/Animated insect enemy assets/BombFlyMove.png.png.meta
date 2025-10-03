@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: c9abb6f9a8fecefadbac4518b363db3c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8076315906849086924
+    second: BombFlyMove.png_0
+  - first:
+      213: -4822435243327103486
+    second: BombFlyMove.png_1
+  - first:
+      213: -1972273227085214876
+    second: BombFlyMove.png_2
+  - first:
+      213: 2133583277127941071
+    second: BombFlyMove.png_3
+  - first:
+      213: -5682073473982834133
+    second: BombFlyMove.png_4
+  - first:
+      213: 5644245005953739981
+    second: BombFlyMove.png_5
+  - first:
+      213: -6420159685816804358
+    second: BombFlyMove.png_6
+  - first:
+      213: -291018332541501505
+    second: BombFlyMove.png_7
+  - first:
+      213: -6418127665839203857
+    second: BombFlyMove.png_8
+  - first:
+      213: 1656530486590207491
+    second: BombFlyMove.png_9
+  - first:
+      213: 6798670166661110633
+    second: BombFlyMove.png_10
+  - first:
+      213: -7049610877798996292
+    second: BombFlyMove.png_11
+  - first:
+      213: 6729930697970593732
+    second: BombFlyMove.png_12
+  - first:
+      213: -6609121397518561818
+    second: BombFlyMove.png_13
+  - first:
+      213: 2974368567765881716
+    second: BombFlyMove.png_14
+  - first:
+      213: -3511019110855872790
+    second: BombFlyMove.png_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BombFlyMove.png_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 103
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4326c6e09792bef80800000000000000
+      internalID: -8076315906849086924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 104
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ed92152b4431db0800000000000000
+      internalID: -4822435243327103486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 104
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46b829313f311a4e0800000000000000
+      internalID: -1972273227085214876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_3
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 103
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcbbce3bfa20c9d10800000000000000
+      internalID: 2133583277127941071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_4
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 71
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a5593c7483521b0800000000000000
+      internalID: -5682073473982834133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_5
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 72
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcc252dade2645e40800000000000000
+      internalID: 5644245005953739981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_6
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 72
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb1b9df7c207e6a0800000000000000
+      internalID: -6420159685816804358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_7
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 71
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbfbcb15e5816fbf0800000000000000
+      internalID: -291018332541501505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 39
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe91c8284ea3ee6a0800000000000000
+      internalID: -6418127665839203857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_9
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 40
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30670dc63bd2df610800000000000000
+      internalID: 1656530486590207491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_10
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 40
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96b91e4ee7ab95e50800000000000000
+      internalID: 6798670166661110633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_11
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 39
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb6af00d140ca2e90800000000000000
+      internalID: -7049610877798996292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_12
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 9
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cfa8872054856d50800000000000000
+      internalID: 6729930697970593732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_13
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 10
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ed09770b1fa744a0800000000000000
+      internalID: -6609121397518561818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_14
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 10
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 473d5c81474174920800000000000000
+      internalID: 2974368567765881716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BombFlyMove.png_15
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 9
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeee3d988ba564fc0800000000000000
+      internalID: -3511019110855872790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BombFlyMove.png_0: -8076315906849086924
+      BombFlyMove.png_1: -4822435243327103486
+      BombFlyMove.png_10: 6798670166661110633
+      BombFlyMove.png_11: -7049610877798996292
+      BombFlyMove.png_12: 6729930697970593732
+      BombFlyMove.png_13: -6609121397518561818
+      BombFlyMove.png_14: 2974368567765881716
+      BombFlyMove.png_15: -3511019110855872790
+      BombFlyMove.png_2: -1972273227085214876
+      BombFlyMove.png_3: 2133583277127941071
+      BombFlyMove.png_4: -5682073473982834133
+      BombFlyMove.png_5: 5644245005953739981
+      BombFlyMove.png_6: -6420159685816804358
+      BombFlyMove.png_7: -291018332541501505
+      BombFlyMove.png_8: -6418127665839203857
+      BombFlyMove.png_9: 1656530486590207491
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
