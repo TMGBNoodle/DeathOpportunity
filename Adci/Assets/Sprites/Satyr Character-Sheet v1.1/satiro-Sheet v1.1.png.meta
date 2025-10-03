@@ -205,7 +205,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -1534,7 +1534,64 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      satiro-Sheet v1.1_0: -7751219071525288297
+      satiro-Sheet v1.1_1: -2809228643774045280
+      satiro-Sheet v1.1_10: -1908918943226329372
+      satiro-Sheet v1.1_11: 1328237447766649780
+      satiro-Sheet v1.1_12: -5720904932379876136
+      satiro-Sheet v1.1_13: 3444854963725435246
+      satiro-Sheet v1.1_14: -4816617863048114565
+      satiro-Sheet v1.1_15: 2763688417475579659
+      satiro-Sheet v1.1_16: -1214719636342988140
+      satiro-Sheet v1.1_17: 914186538395792944
+      satiro-Sheet v1.1_18: 137699103760701525
+      satiro-Sheet v1.1_19: 8276014330734057266
+      satiro-Sheet v1.1_2: 5098452441359303606
+      satiro-Sheet v1.1_20: -2197683407539005745
+      satiro-Sheet v1.1_21: -3925375958757415530
+      satiro-Sheet v1.1_22: -5671847545203432123
+      satiro-Sheet v1.1_23: -7739548479223055607
+      satiro-Sheet v1.1_24: -2690414675476776394
+      satiro-Sheet v1.1_25: -4471406728318763338
+      satiro-Sheet v1.1_26: 6494386108182975924
+      satiro-Sheet v1.1_27: 2466900939361361404
+      satiro-Sheet v1.1_28: -8692339599976076098
+      satiro-Sheet v1.1_29: -7858886354126620006
+      satiro-Sheet v1.1_3: -7858148026998855073
+      satiro-Sheet v1.1_30: -8884097237527819120
+      satiro-Sheet v1.1_31: 2781800300522740575
+      satiro-Sheet v1.1_32: 3791639993546102096
+      satiro-Sheet v1.1_33: 4044788617937638984
+      satiro-Sheet v1.1_34: -2379543994563418164
+      satiro-Sheet v1.1_35: 41123774206982150
+      satiro-Sheet v1.1_36: -4068763970874539475
+      satiro-Sheet v1.1_37: -4153309117603532858
+      satiro-Sheet v1.1_38: -508077316666523551
+      satiro-Sheet v1.1_39: 7112863116879722814
+      satiro-Sheet v1.1_4: -5451656731380038960
+      satiro-Sheet v1.1_40: 3929876922662428266
+      satiro-Sheet v1.1_41: 5316822035179718802
+      satiro-Sheet v1.1_42: -7139427159582180840
+      satiro-Sheet v1.1_43: 4545048574092280427
+      satiro-Sheet v1.1_44: 6882372061013077628
+      satiro-Sheet v1.1_45: 5368650406353356059
+      satiro-Sheet v1.1_46: 5924820194454153032
+      satiro-Sheet v1.1_47: 9161378483487194867
+      satiro-Sheet v1.1_48: 8300765068421179809
+      satiro-Sheet v1.1_49: 4164816203915251958
+      satiro-Sheet v1.1_5: -1092727325466002275
+      satiro-Sheet v1.1_50: -2079180002640568385
+      satiro-Sheet v1.1_51: 6363309222094875897
+      satiro-Sheet v1.1_52: -3170127994971847490
+      satiro-Sheet v1.1_53: 2765147747820285598
+      satiro-Sheet v1.1_54: -6013088047962509475
+      satiro-Sheet v1.1_55: -6494103715992501850
+      satiro-Sheet v1.1_56: 7647059380086944144
+      satiro-Sheet v1.1_6: 2827251138833111162
+      satiro-Sheet v1.1_7: -4244630165220924610
+      satiro-Sheet v1.1_8: 7692902487014450953
+      satiro-Sheet v1.1_9: 373959895375165562
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
