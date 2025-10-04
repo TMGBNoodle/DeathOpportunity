@@ -1,0 +1,1392 @@
+fileFormatVersion: 2
+guid: 23019a12bfa17d122ba06d8615a534d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2762900522943180087
+    second: PurpleProtagGuy_0
+  - first:
+      213: -2796711182481885192
+    second: PurpleProtagGuy_1
+  - first:
+      213: -7141776479721241961
+    second: PurpleProtagGuy_2
+  - first:
+      213: 1500218787141769771
+    second: PurpleProtagGuy_3
+  - first:
+      213: 6650664739860558981
+    second: PurpleProtagGuy_4
+  - first:
+      213: -4490141233793126075
+    second: PurpleProtagGuy_5
+  - first:
+      213: -2428679382592350738
+    second: PurpleProtagGuy_6
+  - first:
+      213: 1605482552774489645
+    second: PurpleProtagGuy_7
+  - first:
+      213: -1902624581488400142
+    second: PurpleProtagGuy_8
+  - first:
+      213: -9057224525749574991
+    second: PurpleProtagGuy_9
+  - first:
+      213: -1726477913221522615
+    second: PurpleProtagGuy_10
+  - first:
+      213: 6099080817406899460
+    second: PurpleProtagGuy_11
+  - first:
+      213: -7681844373108700959
+    second: PurpleProtagGuy_12
+  - first:
+      213: 3339986605171601827
+    second: PurpleProtagGuy_13
+  - first:
+      213: 8156770645252834304
+    second: PurpleProtagGuy_14
+  - first:
+      213: 7710313262560925827
+    second: PurpleProtagGuy_15
+  - first:
+      213: -624850102954110320
+    second: PurpleProtagGuy_16
+  - first:
+      213: 4221707122562368142
+    second: PurpleProtagGuy_17
+  - first:
+      213: -1601816675585300043
+    second: PurpleProtagGuy_18
+  - first:
+      213: -6458828128347830814
+    second: PurpleProtagGuy_19
+  - first:
+      213: 814225396884619104
+    second: PurpleProtagGuy_20
+  - first:
+      213: 6192596535476844868
+    second: PurpleProtagGuy_21
+  - first:
+      213: 3177058772606202626
+    second: PurpleProtagGuy_22
+  - first:
+      213: -9027905161234860025
+    second: PurpleProtagGuy_23
+  - first:
+      213: 7963861460387833220
+    second: PurpleProtagGuy_24
+  - first:
+      213: 863802605205398786
+    second: PurpleProtagGuy_25
+  - first:
+      213: 6815472252295356729
+    second: PurpleProtagGuy_26
+  - first:
+      213: 8411443339524976127
+    second: PurpleProtagGuy_27
+  - first:
+      213: 3817302023672469259
+    second: PurpleProtagGuy_28
+  - first:
+      213: -8445652498439953760
+    second: PurpleProtagGuy_29
+  - first:
+      213: -7023712722143956816
+    second: PurpleProtagGuy_30
+  - first:
+      213: 3602073760183055016
+    second: PurpleProtagGuy_31
+  - first:
+      213: 4105761260868582793
+    second: PurpleProtagGuy_32
+  - first:
+      213: 384681382570124510
+    second: PurpleProtagGuy_33
+  - first:
+      213: 1147706774233129718
+    second: PurpleProtagGuy_34
+  - first:
+      213: -7844005634406363844
+    second: PurpleProtagGuy_35
+  - first:
+      213: 6395316428323322788
+    second: PurpleProtagGuy_36
+  - first:
+      213: 7840141803498698540
+    second: PurpleProtagGuy_37
+  - first:
+      213: 3832482987067584147
+    second: PurpleProtagGuy_38
+  - first:
+      213: -2343579877783302610
+    second: PurpleProtagGuy_39
+  - first:
+      213: 2122043622053838453
+    second: PurpleProtagGuy_40
+  - first:
+      213: 4147385741168607913
+    second: PurpleProtagGuy_41
+  - first:
+      213: -8837398683936358928
+    second: PurpleProtagGuy_42
+  - first:
+      213: 8354585270593803793
+    second: PurpleProtagGuy_43
+  - first:
+      213: -2113515084729021866
+    second: PurpleProtagGuy_44
+  - first:
+      213: 7361588710006641576
+    second: PurpleProtagGuy_45
+  - first:
+      213: -2144492812267495206
+    second: PurpleProtagGuy_46
+  - first:
+      213: 7775004568897380646
+    second: PurpleProtagGuy_47
+  - first:
+      213: 953433277183450482
+    second: PurpleProtagGuy_48
+  - first:
+      213: -3445694765528973788
+    second: PurpleProtagGuy_49
+  - first:
+      213: 8499191962308518862
+    second: PurpleProtagGuy_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PurpleProtagGuy_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 228
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73de4cb136bc75620800000000000000
+      internalID: 2762900522943180087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 228
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f7fdc44ff51039d0800000000000000
+      internalID: -2796711182481885192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 228
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 792c9f4612053ec90800000000000000
+      internalID: -7141776479721241961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_3
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 228
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2ad3f4d909d1d410800000000000000
+      internalID: 1500218787141769771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_4
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 228
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 584ba9b1858eb4c50800000000000000
+      internalID: 6650664739860558981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_5
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 228
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5413d607650dfa1c0800000000000000
+      internalID: -4490141233793126075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_6
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 196
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee5944f18f89b4ed0800000000000000
+      internalID: -2428679382592350738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_7
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 196
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d26f53320e1d74610800000000000000
+      internalID: 1605482552774489645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_8
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 197
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f8257f06058895e0800000000000000
+      internalID: -1902624581488400142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_9
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 196
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b2adb3f7464e4280800000000000000
+      internalID: -9057224525749574991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_10
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 196
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94b9fd53c715a08e0800000000000000
+      internalID: -1726477913221522615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_11
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 196
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 405ffe960b944a450800000000000000
+      internalID: 6099080817406899460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_12
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 197
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8c5092e3b946590800000000000000
+      internalID: -7681844373108700959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_13
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 196
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a1f0d31f140a5e20800000000000000
+      internalID: 3339986605171601827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_14
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 164
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00401a87faba23170800000000000000
+      internalID: 8156770645252834304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_15
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 164
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3885de1bf09800b60800000000000000
+      internalID: 7710313262560925827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_16
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 164
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 092dd8754261457f0800000000000000
+      internalID: -624850102954110320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_17
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 164
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e82011aa244869a30800000000000000
+      internalID: 4221707122562368142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_18
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 134
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b9e078683435c9e0800000000000000
+      internalID: -1601816675585300043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_19
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 134
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e5c680a902ad56a0800000000000000
+      internalID: -6458828128347830814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_20
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 134
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06fb86c3fa5bc4b00800000000000000
+      internalID: 814225396884619104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_21
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 134
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449796e3db580f550800000000000000
+      internalID: 6192596535476844868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_22
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 134
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2033bb3fe1e271c20800000000000000
+      internalID: 3177058772606202626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_23
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 134
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7083ea6761076b280800000000000000
+      internalID: -9027905161234860025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_24
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 103
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48527dacdc1558e60800000000000000
+      internalID: 7963861460387833220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_25
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 103
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 205235f84e7dcfb00800000000000000
+      internalID: 863802605205398786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_26
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 103
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 931a89e47eb659e50800000000000000
+      internalID: 6815472252295356729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_27
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 103
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd26bcc6237bb470800000000000000
+      internalID: 8411443339524976127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_28
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 103
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07906137f7c9f430800000000000000
+      internalID: 3817302023672469259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_29
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 103
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a2a816bcc30bca80800000000000000
+      internalID: -8445652498439953760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_30
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 68
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b0b7301e72c68e90800000000000000
+      internalID: -7023712722143956816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_31
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 68
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a2777210032df130800000000000000
+      internalID: 3602073760183055016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_32
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 68
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98db1ae0d189af830800000000000000
+      internalID: 4105761260868582793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_33
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 68
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed46cc7eda9a65500800000000000000
+      internalID: 384681382570124510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_34
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 75
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f2a978fa397def00800000000000000
+      internalID: 1147706774233129718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_35
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 68
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3dcb015f6e742390800000000000000
+      internalID: -7844005634406363844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_36
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 79
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ab7e60686ab0c850800000000000000
+      internalID: 6395316428323322788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_37
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 77
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c27fa327e67cdcc60800000000000000
+      internalID: 7840141803498698540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_38
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 68
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39e24eba8f6bf2530800000000000000
+      internalID: 3832482987067584147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_39
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 68
+        width: 83
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2e09f9948ee97fd0800000000000000
+      internalID: -2343579877783302610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_40
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 68
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ef6626e63037d10800000000000000
+      internalID: 2122043622053838453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_41
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 36
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a200e89b597e8930800000000000000
+      internalID: 4147385741168607913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_42
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 36
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fdf77138b04b5580800000000000000
+      internalID: -8837398683936358928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_43
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 36
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11654730a0371f370800000000000000
+      internalID: 8354585270593803793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_44
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 36
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65a0c437a394ba2e0800000000000000
+      internalID: -2113515084729021866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_45
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 4
+        width: 23
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a3d87aaded992660800000000000000
+      internalID: 7361588710006641576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_46
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 4
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad0ea65362b3d32e0800000000000000
+      internalID: -2144492812267495206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_47
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 4
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 621ea20367d56eb60800000000000000
+      internalID: 7775004568897380646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_48
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 4
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27d5e8b93864b3d00800000000000000
+      internalID: 953433277183450482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_49
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 4
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42ef838edde6e20d0800000000000000
+      internalID: -3445694765528973788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleProtagGuy_50
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 4
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec3214f1f0233f570800000000000000
+      internalID: 8499191962308518862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

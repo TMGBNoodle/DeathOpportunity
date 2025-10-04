@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class EnemyMovementBasicMelee : MonoBehaviour
 {
+
     Rigidbody2D rb;
     Status stat;
     private GameObject player;
     SpriteRenderer sp;
     Animator anim;
 
+    
     [SerializeField] private int maxSpeed = 3;
     [SerializeField] private float acceleration = 1;
 

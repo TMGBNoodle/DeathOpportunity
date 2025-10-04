@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyMovementFlyingExplosion : MonoBehaviour
 {
     [SerializeField] private float visionRange = 10;
-    [SerializeField] private float maxSpeed = 1;
+    [SerializeField] private float maxSpeed = 5;
     private float speed;
     [SerializeField] private float explodeTime = 3;
     private float explodeTimer;
@@ -47,7 +47,7 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
             enemyPos = gameObject.transform.position;
             if (Vector2.Distance(playerPos, enemyPos) < visionRange)
             {
-                directionToPlayer = playerPos - enemyPos;
+                directionToPlayer = (playerPos - enemyPos).normalized;
                 checkExplode();
                 if (exploding)
                 {
@@ -104,7 +104,7 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
 
     void Move()
     {
-        directionToPlayer = playerPos - enemyPos;
+        directionToPlayer = (playerPos - enemyPos).normalized;
         rb.linearVelocity = directionToPlayer * speed;
     }
 
