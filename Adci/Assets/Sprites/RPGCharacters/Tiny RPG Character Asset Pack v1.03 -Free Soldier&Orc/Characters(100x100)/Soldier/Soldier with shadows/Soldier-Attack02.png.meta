@@ -117,6 +117,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -309,7 +322,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Soldier-Attack02_0: 4811190364059900513
+      Soldier-Attack02_1: -3630134925126372854
+      Soldier-Attack02_2: -3996107768381173192
+      Soldier-Attack02_3: 8152592829446542042
+      Soldier-Attack02_4: 4949258004858939775
+      Soldier-Attack02_5: -8030318945529727460
+      Soldier-Attack02_6: -5444968504786303033
+      Soldier-Attack02_7: 4400260421584532726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
