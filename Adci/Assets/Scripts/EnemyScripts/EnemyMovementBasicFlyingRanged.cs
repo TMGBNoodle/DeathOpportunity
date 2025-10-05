@@ -10,7 +10,8 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     private enum type
     {
         Fly,
-        Eye
+        Eye,
+        BAA
     }
     [SerializeField] type enemyType = type.Fly;
     [SerializeField] float visionRange = 10;
@@ -78,10 +79,16 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
             enemyPos = gameObject.transform.position;
             if (Vector2.Distance(playerPos, enemyPos) < visionRange)
             {
-                if (enemyType == type.Eye)
+                switch (enemyType)
                 {
-                    anim.SetBool("Chasing", true);
+                    case type.Eye:
+                        anim.SetBool("Chasing", true);
+                        break;
+                    case type.BAA:
+                        anim.SetBool("Activated", true);
+                        break;
                 }
+                
                 directionToPlayer = (playerPos - enemyPos).normalized;
                 Move();
                 attack();
