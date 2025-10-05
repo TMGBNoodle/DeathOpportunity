@@ -9,13 +9,20 @@ public class EnemyMovementBasicMelee : MonoBehaviour
     SpriteRenderer sp;
     Animator anim;
 
-    
+
     [SerializeField] private int maxSpeed = 3;
     [SerializeField] private float acceleration = 1;
 
-    [SerializeField] float KnockBackAmount = 2;
+    [SerializeField] float KnockBackMult = 1.5f;
 
-    private Vector2 Direction = Vector2.left;
+    public Vector2 knockBackDir = new Vector2(1, 1);
+
+    public float damageKnockbackMult = 1;
+
+    private Vector2 Direction = new Vector2(-1, 0);
+    bool knockbackDone = false;
+
+    public float damage = 10;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,13 +35,13 @@ public class EnemyMovementBasicMelee : MonoBehaviour
     }
 
     void flipSprite()
-    { 
+    {
         if (rb.linearVelocityX > 0)
         {
             sp.flipX = true;
         }
         else
-        { 
+        {
             sp.flipX = false;
         }
     }
@@ -42,23 +49,26 @@ public class EnemyMovementBasicMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        flipSprite();
         if (!stat.KnockedBack)
         {
+            flipSprite();
+            knockbackDone = false;
             rb.linearVelocity = maxSpeed * Direction + new Vector2(0, rb.linearVelocityY);
         }
-        else
+        else if (!knockbackDone)
         {
-            Vector2 direction = (gameObject.transform.position -
-            player.transform.position).normalized;
-            rb.AddForce(KnockBackAmount * direction);
+            (float, int) knockbackInfo = stat.getKnockBackInfo();
+            knockbackDone = true;
+            int direction = knockbackInfo.Item2;
+            float knockBackAmount = knockbackInfo.Item1 * KnockBackMult;
+
+            rb.linearVelocity = knockBackAmount * new Vector2(knockBackDir.x * direction, knockBackDir.y);
             //Debug.Log("Here");
-            Vector2 pos = gameObject.transform.position;
-            Debug.DrawLine(gameObject.transform.position, pos + (direction * 3));
+            // Vector2 pos = gameObject.transform.position;
+            // Debug.DrawLine(gameObject.transform.position, pos + (direction * 3));
             /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
             + " : " + direction);*/
         }
-        
     }
 
     void changeDirection()
@@ -69,25 +79,36 @@ public class EnemyMovementBasicMelee : MonoBehaviour
     void attack()
     {
         anim.SetTrigger("Attack");
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, -transform.right, 1);
-        if (hit)
+        RaycastHit2D[] hits = Physics2D.RaycastAll(rb.position, Direction, 2);
+        foreach (RaycastHit2D hit in hits)
         {
-            if (!hit.collider.gameObject.CompareTag("Player"))
+            if (hit)
             {
-                //todo make hurt player
+                print("Raycast hit something");
+                if (hit.collider.gameObject.CompareTag("Player"))
+                {
+                    print("HitPlayer");
+                    hit.transform.GetComponent<Status>().TakeDamage(damage, KnockBackMult, (int)Direction.x);
+                }
             }
         }
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            changeDirection();
-            Debug.Log("Hit");
+            int collisionDir = (int)Mathf.Sign(transform.position.x - collision.transform.position.x);
+            if (collisionDir != Direction.x)
+            {
+                changeDirection();
+            }
+            Debug.Log(transform.position.x - collision.transform.position.x);
         }
         if (collision.gameObject.CompareTag("Player"))
         {
+            print("Player encounter");
             attack();
         }
     }

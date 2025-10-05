@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,9 +41,24 @@ public class PlayerMove : MonoBehaviour
 
     public int attackCasts = 5;
 
+    public float knockbackMult = 10;
+
     public float castWidth = .66f;
 
+    public Vector2 knockBackDir = new Vector2(0.7f, 0.5f);
+
     public GameObject weapon;
+
+    public float playerDamage = 10;
+    public float lastAttack = -10;
+
+    public float attackCooldown = 0.5f;
+
+    public Status stats;
+
+    private bool knockbackDone;
+
+    private float knockBackRes = 1f;
 
     Vector3 jumpDetectOffset = new Vector3(0, 0.5f);
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,6 +66,7 @@ public class PlayerMove : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerInput = gameObject.GetComponent<PlayerInput>();
+        stats = gameObject.GetComponent<Status>();
     }
 
     // Update is called once per frame
@@ -59,53 +76,64 @@ public class PlayerMove : MonoBehaviour
         // float timeSinceDash = Time.time - dashTime;
         // bool canJump = timeSinceJump >= jumpDebounce;
         // bool canDash = timeSinceDash >= dashDebounce && dashCount < maxDashes;
-        if (playerControl)
+        if (stats.KnockedBack)
         {
-            Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position - jumpDetectOffset, 0.2f);
-            bool floorFound = false;
-            foreach (Collider2D collision in collisions)
+            if (!knockbackDone)
             {
-                if (collision.gameObject.tag == "Floor")
+                (float, int) knockbackInfo = stats.getKnockBackInfo();
+                knockbackDone = true;
+                int direction = knockbackInfo.Item2;
+                float knockBackAmount = knockbackInfo.Item1 * knockBackRes;
+                rb.linearVelocity = knockBackAmount * new Vector2(knockBackDir.x * direction, knockBackDir.y);
+            }
+        }
+            else if (playerControl)
+            {
+                Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position - jumpDetectOffset, 0.2f);
+                bool floorFound = false;
+                foreach (Collider2D collision in collisions)
                 {
-                    floorFound = true;
-                    if (Mathf.Abs(rb.linearVelocityY) <= 0.01f)
+                    if (collision.gameObject.tag == "Floor")
                     {
                         floorFound = true;
-                        rb.linearVelocityY = 0;
+                        if (Mathf.Abs(rb.linearVelocityY) <= 0.01f)
+                        {
+                            floorFound = true;
+                            rb.linearVelocityY = 0;
+                        }
                     }
                 }
+                isGrounded = floorFound;
+                if (horizontalMove != 0)
+                {
+                    facing = (int)Mathf.Sign(horizontalMove);
+                    weapon.transform.position = transform.position + new Vector3(facing * weaponOffset, 0);
+                }
+                if (vertMove == 1)
+                {
+                    Jump(new InputAction.CallbackContext());
+                }
+                rb.linearVelocityX = horizontalMove * speed;
             }
-            isGrounded = floorFound;
-            if (horizontalMove != 0)
+            else if (dashFlag)
             {
-                facing = (int)Mathf.Sign(horizontalMove);
-                weapon.transform.position = transform.position + new Vector3(facing * weaponOffset, 0);
+                // dist remaining / time remaining (s)  = dist/s required
+                // time.deltaTime * dist req = tomove
+                float timeLeft = dashInfo.Item1;
+                float distLeft = dashInfo.Item2;
+                if (timeLeft <= 0)
+                {
+                    stats.removeImmor(effects.dash);
+                    dashFlag = false;
+                    playerControl = true;
+                }
+                else
+                {
+                    float movePs = (distLeft / timeLeft) * Time.deltaTime;
+                    rb.MovePosition(transform.position + new Vector3(movePs, 0));
+                    dashInfo = (timeLeft - Time.deltaTime, distLeft -= movePs);
+                }
             }
-            if (vertMove == 1)
-            {
-                Jump(new InputAction.CallbackContext());
-            }
-            rb.linearVelocityX = horizontalMove * speed;
-        }
-        else if (dashFlag)
-        {
-            print(dashInfo);
-            // dist remaining / time remaining (s)  = dist/s required
-            // time.deltaTime * dist req = tomove
-            float timeLeft = dashInfo.Item1;
-            float distLeft = dashInfo.Item2;
-            if (timeLeft <= 0)
-            {
-                dashFlag = false;
-                playerControl = true;
-            }
-            else
-            {
-                float movePs = (distLeft / timeLeft) * Time.deltaTime;
-                rb.MovePosition(transform.position + new Vector3(movePs, 0));
-                dashInfo = (timeLeft - Time.deltaTime, distLeft -= movePs);
-            }
-        }
     }
 
     public void Move(InputAction.CallbackContext ctx)
@@ -119,6 +147,7 @@ public class PlayerMove : MonoBehaviour
     {
         if ((Time.time - lastDash) > dashCooldown)
         {
+            stats.addImmor(effects.dash);
             rb.linearVelocity = new Vector2(0, 0);
             playerControl = false;
             lastDash = Time.time;
@@ -137,83 +166,88 @@ public class PlayerMove : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext ctx)
     {
-        print("Attack");
-        //facing angle will either be (1, 0) or (-1, 0)
-        //angle for facing angle is s = o/h
-        // sin(x) = 1/h h = attackRange
-        // sin(x) = 1/1.5
-        // sin(pi/2)
-        // max = (pi/2) - (castTotalAngle/2)
-        // min = (pi/2) + (castTotalAngle/2)
-        float castRad = Mathf.Abs((castWidth / 2));
-        float midPoint;
-        if (facing == 1)
+        if ((Time.time - lastAttack) > attackCooldown)
         {
-            midPoint = Mathf.PI / 2;
-        }
-        else
-        {
-            midPoint = (3 * Mathf.PI) / 2;
-        }
-        float topAngle = midPoint - castRad;
-        float bottomAngle = midPoint + castRad;
-        float step = castRad / attackCasts;
-        print(topAngle);
-        print(bottomAngle);
-        print(midPoint);
-        //Attack casts counts how many rays will be fired. This is the count for EACH SIDE, top and bottom
-        //So with attackCasts = 3 there will be 3 rays on top of the straight ray, and 3 on the bottom
-        //for a total of 7. 
-        List<GameObject> hitEnemies
-         = new List<GameObject>();
-        for (int i = 0; i < attackCasts; i++)
-        {
-            print(topAngle);
-            float angle = topAngle + (i * step);
-            Vector3 offset = attackRange * new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.position + offset);
-            Debug.DrawLine(transform.position, transform.position + offset, Color.cyan, 5f);
-            print("Drawing ray");
-            foreach (RaycastHit2D hit in hits)
+            print("Attack");
+            lastAttack = Time.time;
+            //facing angle will either be (1, 0) or (-1, 0)
+            //angle for facing angle is s = o/h
+            // sin(x) = 1/h h = attackRange
+            // sin(x) = 1/1.5
+            // sin(pi/2)
+            // max = (pi/2) - (castTotalAngle/2)
+            // min = (pi/2) + (castTotalAngle/2)
+            float castRad = Mathf.Abs((castWidth / 2));
+            float midPoint;
+            if (facing == 1)
             {
-                if (hit.transform.tag == "Attackables")
+                midPoint = Mathf.PI / 2;
+            }
+            else
+            {
+                midPoint = (3 * Mathf.PI) / 2;
+            }
+            float topAngle = midPoint - castRad;
+            float bottomAngle = midPoint + castRad;
+            float step = castRad / attackCasts;
+            //Attack casts counts how many rays will be fired. This is the count for EACH SIDE, top and bottom
+            //So with attackCasts = 3 there will be 3 rays on top of the straight ray, and 3 on the bottom
+            //for a total of 7. 
+            List<GameObject> hitEnemies
+            = new List<GameObject>();
+            for (int i = 0; i < attackCasts; i++)
+            {
+                float angle = topAngle + (i * step);
+                Vector3 offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, offset, attackRange);
+                Debug.DrawRay(transform.position, offset * attackRange, Color.cyan, 5f);
+                foreach (RaycastHit2D hit in hits)
                 {
-                    if (!hitEnemies.Contains(hit.transform.gameObject))
+                    Status status = hit.transform.gameObject.GetComponent<Status>();
+                    if (status && hit.transform.tag != "Player")
                     {
-                        hitEnemies.Add(hit.transform.gameObject);
-                        //enemy.takedamage
+                        if (!hitEnemies.Contains(hit.transform.gameObject))
+                        {
+                            hitEnemies.Add(hit.transform.gameObject);
+                            print("top hit");
+                            status.TakeDamage(playerDamage, knockbackMult, facing);
+                        }
                     }
                 }
             }
-        }
-        Vector3 sOffset = attackRange * new Vector3(Mathf.Sin(midPoint), Mathf.Cos(midPoint));
-        RaycastHit2D[] sHits = Physics2D.RaycastAll(transform.position, transform.position + sOffset);
-        Debug.DrawLine(transform.position, transform.position + sOffset, Color.red, 5f);
-        foreach (RaycastHit2D hit in sHits)
-        {
-            if (hit.transform.tag == "Attackables")
+            Vector3 sOffset = new Vector3(Mathf.Sin(midPoint), Mathf.Cos(midPoint));
+            RaycastHit2D[] sHits = Physics2D.RaycastAll(transform.position, sOffset, attackRange);
+            Debug.DrawRay(transform.position, attackRange * sOffset, Color.red, 5f);
+            foreach (RaycastHit2D hit in sHits)
             {
-                if (!hitEnemies.Contains(hit.transform.gameObject))
-                {
-                    hitEnemies.Add(hit.transform.gameObject);
-                    //enemy.takedamage
-                }
-            }
-        }
-        for (int i = 0; i < attackCasts; i++)
-        {
-            float angle = bottomAngle - (i * step);
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.position + new Vector3(Mathf.Sin(angle), Mathf.Cos(angle)));
-            Vector3 offset = attackRange * new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
-            Debug.DrawLine(transform.position, transform.position + offset, Color.green, 5f);
-            foreach (RaycastHit2D hit in hits)
-            {
-                if (hit.transform.tag == "Attackables")
+                Status status = hit.transform.gameObject.GetComponent<Status>();
+                if (status && hit.transform.tag != "Player")
                 {
                     if (!hitEnemies.Contains(hit.transform.gameObject))
                     {
                         hitEnemies.Add(hit.transform.gameObject);
-                        //enemy.takedamage
+                        print("str hit");
+                        status.TakeDamage(playerDamage, knockbackMult, facing);
+                    }
+                }
+            }
+            for (int i = 0; i < attackCasts; i++)
+            {
+                float angle = bottomAngle - (i * step);
+                Vector3 offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, offset, attackRange);
+                Debug.DrawRay(transform.position, offset * attackRange, Color.green, 5f);
+                foreach (RaycastHit2D hit in hits)
+                {
+                    Status status = hit.transform.gameObject.GetComponent<Status>();
+                    if (status && hit.transform.tag != "Player")
+                    {
+                        if (!hitEnemies.Contains(hit.transform.gameObject))
+                        {
+                            print("bottom hit");
+                            hitEnemies.Add(hit.transform.gameObject);
+                            status.TakeDamage(playerDamage, knockbackMult, facing);
+                        }
                     }
                 }
             }

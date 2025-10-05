@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Status : MonoBehaviour
@@ -8,7 +9,18 @@ public class Status : MonoBehaviour
 
     [SerializeField] float knockBackLength = 0.1f;
 
-    public Boolean KnockedBack = false;
+    //things that grant Iframes: Knockback, Shift dash, Not attack dash
+    public bool KnockedBack = false;
+
+    public Dictionary<effects, bool> currentEffects = new Dictionary<effects, bool>
+    {
+        {effects.dash, false},
+        {effects.attacking, false}
+    };
+
+    public bool canKnockback = true;
+
+    (float, int) lastKnockbackDone = (0, 0);
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,6 +34,16 @@ public class Status : MonoBehaviour
 
     }
 
+    public void addImmor(effects effect)
+    {
+        currentEffects[effect] = true;
+    }
+
+    public void removeImmor(effects effect)
+    {
+        currentEffects[effect] = false;
+    }
+
     private void CheckDestroyed()
     {
         if (Health <= 0)
@@ -30,12 +52,31 @@ public class Status : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage/*, float knockBackMultiplier = 1*/)
+    public void TakeDamage(float damage, float knockBackMultiplier, int direction)
     {
-        Health -= damage;
-        CheckDestroyed();
-        KnockedBack = true;
-        Invoke("knockbackDone", knockBackLength);
+        if (!currentEffects[effects.attacking])
+        {
+            if (!currentEffects[effects.dash] && !KnockedBack)
+            {
+                Health -= damage;
+                CheckDestroyed();
+                if (canKnockback)
+                {
+                    Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+                    if (rb)
+                    {
+                        KnockedBack = true;
+                        lastKnockbackDone = (knockBackMultiplier, direction);
+                        Invoke("knockbackDone", knockBackLength);
+                    }
+                }
+            }
+        }
+    }
+
+    public (float, int) getKnockBackInfo()
+    {
+        return lastKnockbackDone;
     }
 
     public void TakeDamageTest(float damage)
@@ -50,4 +91,10 @@ public class Status : MonoBehaviour
     {
         KnockedBack = false;
     }
+}
+
+public enum effects
+{
+    dash,
+    attacking
 }

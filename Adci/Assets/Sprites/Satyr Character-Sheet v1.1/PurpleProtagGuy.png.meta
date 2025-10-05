@@ -246,6 +246,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1384,7 +1397,58 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PurpleProtagGuy_0: 2762900522943180087
+      PurpleProtagGuy_1: -2796711182481885192
+      PurpleProtagGuy_10: -1726477913221522615
+      PurpleProtagGuy_11: 6099080817406899460
+      PurpleProtagGuy_12: -7681844373108700959
+      PurpleProtagGuy_13: 3339986605171601827
+      PurpleProtagGuy_14: 8156770645252834304
+      PurpleProtagGuy_15: 7710313262560925827
+      PurpleProtagGuy_16: -624850102954110320
+      PurpleProtagGuy_17: 4221707122562368142
+      PurpleProtagGuy_18: -1601816675585300043
+      PurpleProtagGuy_19: -6458828128347830814
+      PurpleProtagGuy_2: -7141776479721241961
+      PurpleProtagGuy_20: 814225396884619104
+      PurpleProtagGuy_21: 6192596535476844868
+      PurpleProtagGuy_22: 3177058772606202626
+      PurpleProtagGuy_23: -9027905161234860025
+      PurpleProtagGuy_24: 7963861460387833220
+      PurpleProtagGuy_25: 863802605205398786
+      PurpleProtagGuy_26: 6815472252295356729
+      PurpleProtagGuy_27: 8411443339524976127
+      PurpleProtagGuy_28: 3817302023672469259
+      PurpleProtagGuy_29: -8445652498439953760
+      PurpleProtagGuy_3: 1500218787141769771
+      PurpleProtagGuy_30: -7023712722143956816
+      PurpleProtagGuy_31: 3602073760183055016
+      PurpleProtagGuy_32: 4105761260868582793
+      PurpleProtagGuy_33: 384681382570124510
+      PurpleProtagGuy_34: 1147706774233129718
+      PurpleProtagGuy_35: -7844005634406363844
+      PurpleProtagGuy_36: 6395316428323322788
+      PurpleProtagGuy_37: 7840141803498698540
+      PurpleProtagGuy_38: 3832482987067584147
+      PurpleProtagGuy_39: -2343579877783302610
+      PurpleProtagGuy_4: 6650664739860558981
+      PurpleProtagGuy_40: 2122043622053838453
+      PurpleProtagGuy_41: 4147385741168607913
+      PurpleProtagGuy_42: -8837398683936358928
+      PurpleProtagGuy_43: 8354585270593803793
+      PurpleProtagGuy_44: -2113515084729021866
+      PurpleProtagGuy_45: 7361588710006641576
+      PurpleProtagGuy_46: -2144492812267495206
+      PurpleProtagGuy_47: 7775004568897380646
+      PurpleProtagGuy_48: 953433277183450482
+      PurpleProtagGuy_49: -3445694765528973788
+      PurpleProtagGuy_5: -4490141233793126075
+      PurpleProtagGuy_50: 8499191962308518862
+      PurpleProtagGuy_6: -2428679382592350738
+      PurpleProtagGuy_7: 1605482552774489645
+      PurpleProtagGuy_8: -1902624581488400142
+      PurpleProtagGuy_9: -9057224525749574991
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
