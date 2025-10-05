@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviour
 
     public Status stats;
 
-    private bool knockbackDone;
+    private bool knockbackDone = false;
 
     private float knockBackRes = 1f;
 
@@ -78,6 +78,7 @@ public class PlayerMove : MonoBehaviour
         // bool canDash = timeSinceDash >= dashDebounce && dashCount < maxDashes;
         if (stats.KnockedBack)
         {
+            print("Player Knocked Back");
             if (!knockbackDone)
             {
                 (float, int) knockbackInfo = stats.getKnockBackInfo();
@@ -89,6 +90,7 @@ public class PlayerMove : MonoBehaviour
         }
             else if (playerControl)
             {
+            knockbackDone = false;
                 Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position - jumpDetectOffset, 0.2f);
                 bool floorFound = false;
                 foreach (Collider2D collision in collisions)
@@ -145,7 +147,7 @@ public class PlayerMove : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext ctx)
     {
-        if ((Time.time - lastDash) > dashCooldown)
+        if ((Time.time - lastDash) > dashCooldown && !knockbackDone)
         {
             stats.addImmor(effects.dash);
             rb.linearVelocity = new Vector2(0, 0);
@@ -158,7 +160,7 @@ public class PlayerMove : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (isGrounded)
+        if (isGrounded && !knockbackDone)
         {
             rb.linearVelocityY = jumpPower;
         }
