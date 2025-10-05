@@ -19,10 +19,14 @@ public class EnemyMovementBasicMelee : MonoBehaviour
 
     public float damageKnockbackMult = 1;
 
+    public float attackFatigue = 0;
+
     private Vector2 Direction = new Vector2(-1, 0);
     bool knockbackDone = false;
 
     public float damage = 10;
+
+    public float fatigueLength = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,24 +55,31 @@ public class EnemyMovementBasicMelee : MonoBehaviour
     {
         if (!stat.KnockedBack)
         {
-            flipSprite();
-            knockbackDone = false;
-            rb.linearVelocity = maxSpeed * Direction + new Vector2(0, rb.linearVelocityY);
+            if (attackFatigue <= 0)
+            {
+                flipSprite();
+                knockbackDone = false;
+                rb.linearVelocity = maxSpeed * Direction + new Vector2(0, rb.linearVelocityY);
+            }
+            else
+            {
+                attackFatigue -= Time.deltaTime;
+            }
         }
-        else if (!knockbackDone)
-        {
-            (float, int) knockbackInfo = stat.getKnockBackInfo();
-            knockbackDone = true;
-            int direction = knockbackInfo.Item2;
-            float knockBackAmount = knockbackInfo.Item1 * KnockBackMult;
+            else if (!knockbackDone)
+            {
+                (float, int) knockbackInfo = stat.getKnockBackInfo();
+                knockbackDone = true;
+                int direction = knockbackInfo.Item2;
+                float knockBackAmount = knockbackInfo.Item1 * KnockBackMult;
 
-            rb.linearVelocity = knockBackAmount * new Vector2(knockBackDir.x * direction, knockBackDir.y);
-            //Debug.Log("Here");
-            // Vector2 pos = gameObject.transform.position;
-            // Debug.DrawLine(gameObject.transform.position, pos + (direction * 3));
-            /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
-            + " : " + direction);*/
-        }
+                rb.linearVelocity = knockBackAmount * new Vector2(knockBackDir.x * direction, knockBackDir.y);
+                //Debug.Log("Here");
+                // Vector2 pos = gameObject.transform.position;
+                // Debug.DrawLine(gameObject.transform.position, pos + (direction * 3));
+                /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
+                + " : " + direction);*/
+            }
     }
 
     void changeDirection()
@@ -79,6 +90,7 @@ public class EnemyMovementBasicMelee : MonoBehaviour
     void attack()
     {
         anim.SetTrigger("Attack");
+        attackFatigue = fatigueLength;
         RaycastHit2D[] hits = Physics2D.RaycastAll(rb.position, Direction, 2);
         foreach (RaycastHit2D hit in hits)
         {
@@ -108,8 +120,10 @@ public class EnemyMovementBasicMelee : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player"))
         {
-            print("Player encounter");
-            attack();
+            if (attackFatigue <= 0)
+            {
+                attack();
+            }
         }
     }
 }
