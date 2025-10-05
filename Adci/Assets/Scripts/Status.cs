@@ -74,6 +74,18 @@ public class Status : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float damage)
+    {
+        if (!currentEffects[effects.attacking])
+        {
+            if (!currentEffects[effects.dash] && !KnockedBack)
+            {
+                Health -= damage;
+                CheckDestroyed();
+            }
+        }
+    }
+
     public (float, int) getKnockBackInfo()
     {
         return lastKnockbackDone;

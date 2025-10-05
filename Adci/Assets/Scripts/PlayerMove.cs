@@ -55,6 +55,9 @@ public class PlayerMove : MonoBehaviour
 
     public float attackCooldown = 0.5f;
 
+    public int maxCats = 1;
+
+    public int currentCats = 0;
     public Status stats;
 
     private bool knockbackDone = false;
@@ -109,11 +112,12 @@ public class PlayerMove : MonoBehaviour
                 if (collision.gameObject.tag == "Floor")
                 {
                     floorFound = true;
-                    if (Mathf.Abs(rb.linearVelocityY) <= 0.01f)
-                    {
-                        floorFound = true;
-                        rb.linearVelocityY = 0;
-                    }
+                    // if (Mathf.Abs(rb.linearVelocityY) <= 0.01f)
+                    // {
+                    //     rb.linearVelocityY = 0;
+                    // }
+                    currentCats = 0;
+                    break;
                 }
             }
             isGrounded = floorFound;
@@ -206,8 +210,9 @@ public class PlayerMove : MonoBehaviour
         {
             rb.linearVelocityY = jumpPower;
         }
-        else if (onWall && Time.time - lastWallJump > wallJumpCD)
+        else if (onWall && Time.time - lastWallJump > wallJumpCD && currentCats < maxCats)
         {
+            currentCats += 1;
             print("Wall Jump");
             lastWallJump = Time.time;
             rb.linearVelocity = new Vector2(wallDir, 1) * wallJumpParams;
