@@ -110,7 +110,7 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         Vector2 addVel = new Vector2(0, 0);
         RaycastHit2D hit = Physics2D.Raycast(enemyPos, -gameObject.transform.up, floatHeight, whatToFloatFrom);
         Debug.DrawRay(enemyPos, -gameObject.transform.up * floatHeight, Color.red);
-        Debug.Log(hit.collider.gameObject.tag);
+        //Debug.Log(hit.collider.gameObject.tag);
         if (!hit.collider.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Here");
