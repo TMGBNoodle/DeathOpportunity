@@ -22,7 +22,7 @@ public class DamageOnTouch : MonoBehaviour
         {
             if (collision.gameObject.transform.CompareTag("Player"))
             {
-                //damage player
+                collision.transform.GetComponent<Status>().TakeDamage(10);
             }
 
             Destroy(gameObject);

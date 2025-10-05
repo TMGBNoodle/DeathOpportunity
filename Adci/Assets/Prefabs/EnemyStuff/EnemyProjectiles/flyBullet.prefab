@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8107362280869369351}
   - component: {fileID: 8177524303371534495}
   - component: {fileID: 5013222316772486765}
+  - component: {fileID: -8232682974346239912}
   m_Layer: 0
   m_Name: flyBullet
   m_TagString: Enemy
@@ -167,3 +168,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasTimeLimit: 1
   timeLimit: 5
+--- !u!114 &-8232682974346239912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7095184720655783232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3daa964067eeac0b122ad4d563853a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 1
+  knockBackLength: 0.1
+  KnockedBack: 0
+  canKnockback: 0

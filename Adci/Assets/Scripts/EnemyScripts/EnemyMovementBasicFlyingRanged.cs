@@ -38,12 +38,16 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     private float attackDelay = 2;
     private float attackTimer = 0;
 
+    public float knockbackMult = 1;
+
     Rigidbody2D rb;
     Status stat;
     Animator anim;
     SpriteRenderer sp;
 
     Boolean approaching = true;
+
+    bool knockbackDone = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -72,9 +76,9 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        flipSprite();
         if (!stat.KnockedBack)
         {
+            flipSprite();
             playerPos = player.transform.position;
             enemyPos = gameObject.transform.position;
             if (Vector2.Distance(playerPos, enemyPos) < visionRange)
@@ -98,14 +102,18 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
                 anim.SetBool("Chasing", false);
             }
         }
-        else
+        else if(!knockbackDone)
         {
+            (float, int) knockbackInfo = stat.getKnockBackInfo();
+            knockbackDone = true;
+            int direction = knockbackInfo.Item2;
+            float knockBackAmount = knockbackInfo.Item1 * knockbackMult;
             directionToPlayer = (gameObject.transform.position -
             player.transform.position).normalized;
             rb.AddForce(KnockBackAmount * directionToPlayer);
             //Debug.Log("Here");
-            Vector2 pos = gameObject.transform.position;
-            Debug.DrawLine(gameObject.transform.position, pos + (directionToPlayer * 3));
+            // Vector2 pos = gameObject.transform.position;
+            // Debug.DrawLine(gameObject.transform.position, pos + (directionToPlayer * 3));
             /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
             + " : " + direction);*/
         }
@@ -117,7 +125,7 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         Vector2 addVel = new Vector2(0, 0);
         RaycastHit2D hit = Physics2D.Raycast(enemyPos, -gameObject.transform.up, floatHeight, whatToFloatFrom);
         Debug.DrawRay(enemyPos, -gameObject.transform.up * floatHeight, Color.red);
-        Debug.Log(hit.collider.gameObject.tag);
+        //Debug.Log(hit.collider.gameObject.tag);
         if (!hit.collider.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Here");

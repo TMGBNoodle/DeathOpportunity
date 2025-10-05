@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
@@ -54,13 +55,26 @@ public class PlayerMove : MonoBehaviour
 
     public float attackCooldown = 0.5f;
 
+    public int maxCats = 1;
+
+    public int currentCats = 0;
     public Status stats;
 
     private bool knockbackDone = false;
 
     private float knockBackRes = 1f;
 
+    public bool onWall = false;
+
+    int wallDir = 0;
+
+    float lastWallJump = -10;
+
+    float wallJumpCD = 0.5f;
+
+    public Vector2 wallJumpParams = new Vector2(3, 8);
     Vector3 jumpDetectOffset = new Vector3(0, 0.5f);
+    Vector3 wallDetectOffset = new Vector3(0.5f, 0);
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -88,56 +102,84 @@ public class PlayerMove : MonoBehaviour
                 rb.linearVelocity = knockBackAmount * new Vector2(knockBackDir.x * direction, knockBackDir.y);
             }
         }
-            else if (playerControl)
-            {
+        else if (playerControl)
+        {
             knockbackDone = false;
-                Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position - jumpDetectOffset, 0.2f);
-                bool floorFound = false;
-                foreach (Collider2D collision in collisions)
-                {
-                    if (collision.gameObject.tag == "Floor")
-                    {
-                        floorFound = true;
-                        if (Mathf.Abs(rb.linearVelocityY) <= 0.01f)
-                        {
-                            floorFound = true;
-                            rb.linearVelocityY = 0;
-                        }
-                    }
-                }
-                isGrounded = floorFound;
-                if (horizontalMove != 0)
-                {
-                    facing = (int)Mathf.Sign(horizontalMove);
-                    weapon.transform.position = transform.position + new Vector3(facing * weaponOffset, 0);
-                }
-                if (vertMove == 1)
-                {
-                    Jump(new InputAction.CallbackContext());
-                }
-                rb.linearVelocityX = horizontalMove * speed;
-            }
-            else if (dashFlag)
+            Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position - jumpDetectOffset, 0.2f);
+            bool floorFound = false;
+            foreach (Collider2D collision in collisions)
             {
-                // dist remaining / time remaining (s)  = dist/s required
-                // time.deltaTime * dist req = tomove
-                float timeLeft = dashInfo.Item1;
-                float distLeft = dashInfo.Item2;
-                if (timeLeft <= 0)
+                if (collision.gameObject.tag == "Floor")
                 {
-                    stats.removeImmor(effects.dash);
-                    dashFlag = false;
-                    playerControl = true;
-                }
-                else
-                {
-                    float movePs = (distLeft / timeLeft) * Time.deltaTime;
-                    rb.MovePosition(transform.position + new Vector3(movePs, 0));
-                    dashInfo = (timeLeft - Time.deltaTime, distLeft -= movePs);
+                    floorFound = true;
+                    // if (Mathf.Abs(rb.linearVelocityY) <= 0.01f)
+                    // {
+                    //     rb.linearVelocityY = 0;
+                    // }
+                    currentCats = 0;
+                    break;
                 }
             }
+            isGrounded = floorFound;
+            onWall = false;
+            if (!isGrounded)
+            {
+                onWall = checkWall();
+            }
+            if (horizontalMove != 0)
+            {
+                facing = (int)Mathf.Sign(horizontalMove);
+                weapon.transform.position = transform.position + new Vector3(facing * weaponOffset, 0);
+            }
+            if (vertMove == 1)
+            {
+                Jump(new InputAction.CallbackContext());
+            }
+            rb.linearVelocityX = horizontalMove * speed;
+        }
+        else if (dashFlag)
+        {
+            // dist remaining / time remaining (s)  = dist/s required
+            // time.deltaTime * dist req = tomove
+            float timeLeft = dashInfo.Item1;
+            float distLeft = dashInfo.Item2;
+            if (timeLeft <= 0)
+            {
+                stats.removeImmor(effects.dash);
+                dashFlag = false;
+                playerControl = true;
+            }
+            else
+            {
+                float movePs = (distLeft / timeLeft) * Time.deltaTime;
+                rb.MovePosition(transform.position + new Vector3(movePs, 0));
+                dashInfo = (timeLeft - Time.deltaTime, distLeft -= movePs);
+            }
+        }
     }
 
+    private bool checkWall()
+    {
+        Collider2D[] collisions1 = Physics2D.OverlapCircleAll(transform.position - wallDetectOffset, 0.2f);
+        Collider2D[] collisions2 = Physics2D.OverlapCircleAll(transform.position + wallDetectOffset, 0.2f);
+        foreach (Collider2D collision in collisions1)
+        {
+            if (collision.gameObject.tag == "Wall")
+            {
+                wallDir = 1;
+                return true;
+            }
+        }
+        foreach (Collider2D collision in collisions2)
+        {
+            if (collision.gameObject.tag == "Wall")
+            {
+                wallDir = -1;
+                return true;
+            }
+        }
+        return false;
+    }
     public void Move(InputAction.CallbackContext ctx)
     {
         Vector2 moveVector = ctx.ReadValue<Vector2>();
@@ -160,9 +202,20 @@ public class PlayerMove : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (isGrounded && !knockbackDone)
+        if (knockbackDone)
+        {
+            return;
+        }
+        else if (isGrounded)
         {
             rb.linearVelocityY = jumpPower;
+        }
+        else if (onWall && Time.time - lastWallJump > wallJumpCD && currentCats < maxCats)
+        {
+            currentCats += 1;
+            print("Wall Jump");
+            lastWallJump = Time.time;
+            rb.linearVelocity = new Vector2(wallDir, 1) * wallJumpParams;
         }
     }
 
