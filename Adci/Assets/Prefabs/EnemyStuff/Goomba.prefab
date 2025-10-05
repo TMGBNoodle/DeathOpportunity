@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9068526347786579750
 Transform:
   m_ObjectHideFlags: 0
@@ -133,7 +133,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 3
   acceleration: 1
-  KnockBackAmount: 100
+  KnockBackMult: 1.5
+  knockBackDir: {x: 0.8, y: 0.3}
+  damageKnockbackMult: 10
+  attackLength: 2
+  attackFatigue: 0
+  damage: 10
+  fatigueLength: 0.5
+  currentTarget: {fileID: 0}
+  currentState: 0
 --- !u!114 &966020790567130658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 50
-  knockBackLength: 0.1
+  knockBackLength: 0.5
   KnockedBack: 0
+  canKnockback: 1
 --- !u!95 &2798859949453546252
 Animator:
   serializedVersion: 7
