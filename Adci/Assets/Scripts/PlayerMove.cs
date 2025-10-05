@@ -2,16 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
+
+//using System.Numerics;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMove : MonoBehaviour
 {
     public LineRenderer[] rayDebug;
     public Rigidbody2D rb;
     public PlayerInput playerInput;
+    public Animator anim;
+    public SpriteRenderer sr;
+    [SerializeField] GameObject slash;
 
     float horizontalMove = 0;
     float vertMove = 0;
@@ -54,6 +61,7 @@ public class PlayerMove : MonoBehaviour
     public float lastAttack = -10;
 
     public float attackCooldown = 0.5f;
+    public float slashEffectLife = 0.2f;
 
     public int maxCats = 1;
 
@@ -81,6 +89,8 @@ public class PlayerMove : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         stats = gameObject.GetComponent<Status>();
+        anim = gameObject.GetComponentInChildren<Animator>();
+        sr = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -95,6 +105,7 @@ public class PlayerMove : MonoBehaviour
             print("Player Knocked Back");
             if (!knockbackDone)
             {
+                anim.SetBool("Damaged", true);
                 (float, int) knockbackInfo = stats.getKnockBackInfo();
                 knockbackDone = true;
                 int direction = knockbackInfo.Item2;
@@ -104,8 +115,9 @@ public class PlayerMove : MonoBehaviour
         }
         else if (playerControl)
         {
+            anim.SetBool("Damaged", false);
             knockbackDone = false;
-            Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position - jumpDetectOffset, 0.2f);
+            Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position - jumpDetectOffset, 0.05f);
             bool floorFound = false;
             foreach (Collider2D collision in collisions)
             {
@@ -121,6 +133,7 @@ public class PlayerMove : MonoBehaviour
                 }
             }
             isGrounded = floorFound;
+            anim.SetBool("Jumping", !isGrounded);
             onWall = false;
             if (!isGrounded)
             {
@@ -131,11 +144,13 @@ public class PlayerMove : MonoBehaviour
                 facing = (int)Mathf.Sign(horizontalMove);
                 weapon.transform.position = transform.position + new Vector3(facing * weaponOffset, 0);
             }
-            if (vertMove == 1)
+            if (vertMove == 1 && isGrounded)
             {
                 Jump(new InputAction.CallbackContext());
+                isGrounded = false;
             }
             rb.linearVelocityX = horizontalMove * speed;
+            anim.SetBool("Walking", Math.Abs(rb.linearVelocityX) > 0.001);
         }
         else if (dashFlag)
         {
@@ -146,6 +161,7 @@ public class PlayerMove : MonoBehaviour
             if (timeLeft <= 0)
             {
                 stats.removeImmor(effects.dash);
+                anim.SetBool("Dashing", false);
                 dashFlag = false;
                 playerControl = true;
             }
@@ -155,6 +171,14 @@ public class PlayerMove : MonoBehaviour
                 rb.MovePosition(transform.position + new Vector3(movePs, 0));
                 dashInfo = (timeLeft - Time.deltaTime, distLeft -= movePs);
             }
+        }
+        if (rb.linearVelocityX > 0)
+        {
+            sr.flipX = false;
+        }
+        else if (rb.linearVelocityX < 0)
+        {
+            sr.flipX = true;
         }
     }
 
@@ -167,6 +191,7 @@ public class PlayerMove : MonoBehaviour
             if (collision.gameObject.tag == "Wall")
             {
                 wallDir = 1;
+                anim.SetBool("Jumping", false);
                 return true;
             }
         }
@@ -175,6 +200,7 @@ public class PlayerMove : MonoBehaviour
             if (collision.gameObject.tag == "Wall")
             {
                 wallDir = -1;
+                anim.SetBool("Jumping", false);
                 return true;
             }
         }
@@ -191,6 +217,7 @@ public class PlayerMove : MonoBehaviour
     {
         if ((Time.time - lastDash) > dashCooldown && !knockbackDone)
         {
+            anim.SetBool("Dashing", true);
             stats.addImmor(effects.dash);
             rb.linearVelocity = new Vector2(0, 0);
             playerControl = false;
@@ -204,14 +231,21 @@ public class PlayerMove : MonoBehaviour
     {
         if (knockbackDone)
         {
+            print("her");
             return;
         }
         else if (isGrounded)
         {
+            isGrounded = false;
+            print("her2");
+            anim.SetBool("Jumping", true);
             rb.linearVelocityY = jumpPower;
+            isGrounded = false;
         }
         else if (onWall && Time.time - lastWallJump > wallJumpCD && currentCats < maxCats)
         {
+            print("her3");
+            anim.SetBool("Jumping", true);
             currentCats += 1;
             print("Wall Jump");
             lastWallJump = Time.time;
@@ -224,7 +258,20 @@ public class PlayerMove : MonoBehaviour
         if ((Time.time - lastAttack) > attackCooldown)
         {
             print("Attack");
+            slash.SetActive(true);
+            Vector2 pos = gameObject.transform.position;
+            pos.x += (attackRange - 0.1f) * facing;
+            slash.transform.position = pos;
+            if (facing == 1)
+            {
+                slash.transform.rotation = Quaternion.Euler(0, 0, 45);
+            }
+            else
+            {
+                slash.transform.rotation = Quaternion.Euler(0, 180, 45);
+            }
             lastAttack = Time.time;
+            Invoke("turnOffSlash", slashEffectLife);
             //facing angle will either be (1, 0) or (-1, 0)
             //angle for facing angle is s = o/h
             // sin(x) = 1/h h = attackRange
@@ -307,5 +354,10 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void turnOffSlash()
+    {
+        slash.SetActive(false);
     }
 }
