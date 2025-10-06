@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 230407421243505178}
   - component: {fileID: 2281677859475240947}
   - component: {fileID: 3950415165506082947}
+  - component: {fileID: 9121107240588105894}
   m_Layer: 0
   m_Name: Fly
   m_TagString: Enemy
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 221779510434664861, guid: ef7033a43399a525594ee533f28a51d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -104,13 +105,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7ba67e73f00a15687845ee27cb4b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   visionRange: 10
-  player: {fileID: 0}
-  maxSpeed: 1
+  maxSpeed: 5
   minDistFromPlayer: 4
   maxDistFromPlayer: 5
+  shootingRange: 7
+  floatHeight: 3
+  whatToFloatFrom:
+    serializedVersion: 2
+    m_Bits: 64
   projectile: {fileID: 7095184720655783232, guid: 708d4988ef2c98455abf4a0a2199e026, type: 3}
-  projectileSpeed: 0.5
+  projectileSpeed: 5
   KnockBackAmount: 100
 --- !u!50 &8919973006164166857
 Rigidbody2D:
@@ -151,9 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3daa964067eeac0b122ad4d563853a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 50
+  Health: 10
   knockBackLength: 0.1
   KnockedBack: 0
+  canKnockback: 1
 --- !u!95 &2281677859475240947
 Animator:
   serializedVersion: 7
@@ -212,3 +219,39 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.28125
+--- !u!58 &9121107240588105894
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3700808910088308116}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 10

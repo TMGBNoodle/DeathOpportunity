@@ -16,6 +16,7 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
     private Boolean blinking = false;
     [SerializeField] private Color blinkColor;
     [SerializeField] float KnockBackAmount = 2;
+    bool attack = false;
     Rigidbody2D rb;
     SpriteRenderer sp;
     Status stat;
@@ -45,7 +46,7 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
         {
             playerPos = player.transform.position;
             enemyPos = gameObject.transform.position;
-            if (Vector2.Distance(playerPos, enemyPos) < visionRange)
+            if(attack)
             {
                 directionToPlayer = (playerPos - enemyPos).normalized;
                 checkExplode();
@@ -83,7 +84,7 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!exploding)
+        if (!exploding && attack)
         {
             Move();
         }
@@ -123,7 +124,7 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
         GameObject go = Instantiate(explosion, transform.position, Quaternion.identity);
         go.transform.localScale = 2 * explosionRadius * Vector3.one;
         Destroy(go, 2);
-        
+
         for (int i = 0; i < objects.Length; i++)
         {
             if (objects[i].gameObject.transform.CompareTag("Player"))
@@ -137,5 +138,13 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            attack = true;
+        }
+    }
+
+
 }

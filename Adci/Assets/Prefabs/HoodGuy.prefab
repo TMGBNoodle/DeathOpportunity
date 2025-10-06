@@ -56,11 +56,13 @@ MonoBehaviour:
   anim: {fileID: 0}
   sr: {fileID: 0}
   slash: {fileID: 4761929968804206040}
+  horizontalMove: 0
+  vertMove: 0
   attackRange: 1.5
   speed: 6
   dashDist: 3
   dashTime: 0.1
-  jumpPower: 8
+  jumpPower: 10
   dashCooldown: 1
   weaponOffset: 1.5
   attackCasts: 5
@@ -386,7 +388,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 2762900522943180087, guid: 791729eccd2c4516d8feff6cf38305ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -495,7 +497,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 827538889749247048, guid: 4c6ac323d1178f6d5a49bf32e1168f3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
