@@ -118,7 +118,7 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
 
     private void Explode()
     {
-        Collider[] objects = Physics.OverlapSphere(transform.position, explosionRadius);
+        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         GameObject go = Instantiate(explosion, transform.position, Quaternion.identity);
         go.transform.localScale = 2 * explosionRadius * Vector3.one;
@@ -126,10 +126,14 @@ public class EnemyMovementFlyingExplosion : MonoBehaviour
         
         for (int i = 0; i < objects.Length; i++)
         {
+            Collider2D obj = objects[i];
             if (objects[i].gameObject.transform.CompareTag("Player"))
             {
-                //damage player
-
+                Status stats = obj.gameObject.GetComponent<Status>();
+                if (stats)
+                {
+                    stats.TakeDamage(30, Enemies.Boombee);
+                }
             }
         }
 

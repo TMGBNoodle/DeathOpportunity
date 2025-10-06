@@ -55,7 +55,7 @@ MonoBehaviour:
   projectileSpeed: 5
   flyProjectile: {fileID: 1123949672657368397, guid: 058ed6eee42671243802b9317b37ffbb, type: 3}
   activeAbilInd: 0
-  explosionPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 7628776750069032516, guid: 3cfaf627ec33ad4429cf8490cb3dcdb1, type: 3}
   rayDebug: []
   rb: {fileID: 0}
   playerInput: {fileID: 4010629410989655593}
@@ -66,7 +66,7 @@ MonoBehaviour:
   vertMove: 0
   attackRange: 1.5
   speed: 6
-  dashDist: 3
+  dashDist: 5
   dashTime: 0.1
   jumpPower: 8
   dashCooldown: 1
@@ -76,8 +76,8 @@ MonoBehaviour:
   castWidth: 1.5
   knockBackDir: {x: 1, y: 1}
   weapon: {fileID: 4761929968804206040}
-  abils: 010000000300000003000000
-  activeAbils: 030000000300000003000000
+  abils: 030000000300000003000000
+  activeAbils: 020000000300000003000000
   playerDamage: 10
   lastAttack: -10
   attackCooldown: 0.5

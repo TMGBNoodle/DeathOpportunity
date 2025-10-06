@@ -116,7 +116,7 @@ public class EnemyMovementBasicMelee : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    hit.transform.GetComponent<Status>().TakeDamage(damage, damageKnockbackMult, (int)Direction.x);
+                    hit.transform.GetComponent<Status>().TakeDamage(damage, damageKnockbackMult, (int)Direction.x, Enemies.Goomba);
                 }
             }
         }

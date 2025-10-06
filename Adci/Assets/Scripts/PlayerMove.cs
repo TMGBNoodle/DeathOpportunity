@@ -270,6 +270,8 @@ public class PlayerMove : MonoBehaviour
     public void bomb()
     {
         Collider2D[] explosionC = Physics2D.OverlapCircleAll(transform.position, 10);
+        Instantiate(explosionPrefab, transform.position, new Quaternion());
+
         foreach (Collider2D hit in explosionC)
         {
             Status status = hit.transform.gameObject.GetComponent<Status>();
@@ -278,10 +280,11 @@ public class PlayerMove : MonoBehaviour
                 if (!hitEnemies.Contains(hit.transform.gameObject))
                 {
                     hitEnemies.Add(hit.transform.gameObject);
-                    status.TakeDamage(playerDamage, 15, facing);
+                    status.TakeDamage(50, 15, facing);
                 }
             }
         }
+        hitEnemies.Clear();
     }
 
     private bool checkWall()
