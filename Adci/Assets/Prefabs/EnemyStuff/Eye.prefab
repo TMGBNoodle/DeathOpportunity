@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5121074047957008787}
   - component: {fileID: 2638601920834604122}
   - component: {fileID: 6445820436203391661}
+  - component: {fileID: 6165072057189961839}
   m_Layer: 0
   m_Name: Eye
   m_TagString: Enemy
@@ -159,6 +160,7 @@ MonoBehaviour:
   Health: 50
   knockBackLength: 0.1
   KnockedBack: 0
+  canKnockback: 1
 --- !u!95 &2638601920834604122
 Animator:
   serializedVersion: 7
@@ -217,3 +219,39 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.01, y: 0.24}
   m_Radius: 0.28125
+--- !u!58 &6165072057189961839
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500092854036173349}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 10

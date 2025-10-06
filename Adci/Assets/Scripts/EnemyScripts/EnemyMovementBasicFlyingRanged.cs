@@ -30,15 +30,14 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     [SerializeField] float shootingRange = 7;
     [SerializeField] float floatHeight = 3;
     [SerializeField] LayerMask whatToFloatFrom;
- 
+
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed = 0.5f;
-    [SerializeField] float KnockBackAmount = 100;
+    [SerializeField] float KnockBackAmount = 5;
 
     private float attackDelay = 2;
     private float attackTimer = 0;
 
-    public float knockbackMult = 1;
 
     Rigidbody2D rb;
     Status stat;
@@ -49,12 +48,13 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
 
     bool knockbackDone = false;
 
+    private enemyState currentState = enemyState.wander;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = PlayerMove.FindFirstObjectByType<PlayerMove>().gameObject;
         speed = maxSpeed;
         stat = GetComponent<Status>();
         anim = GetComponent<Animator>();
@@ -62,13 +62,13 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     }
 
     void flipSprite()
-    { 
+    {
         if (directionToPlayer.x > 0)
         {
             sp.flipX = true;
         }
         else
-        { 
+        {
             sp.flipX = false;
         }
     }
@@ -79,10 +79,10 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         if (!stat.KnockedBack)
         {
             flipSprite();
-            playerPos = player.transform.position;
-            enemyPos = gameObject.transform.position;
-            if (Vector2.Distance(playerPos, enemyPos) < visionRange)
+            if (currentState == enemyState.hunt)
             {
+                playerPos = player.transform.position;
+                enemyPos = gameObject.transform.position;
                 switch (enemyType)
                 {
                     case type.Eye:
@@ -92,32 +92,39 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
                         anim.SetBool("Activated", true);
                         break;
                 }
-                
+
                 directionToPlayer = (playerPos - enemyPos).normalized;
                 Move();
                 attack();
+
             }
-            else if (enemyType == type.Eye)
+            else if (currentState == enemyState.wander)
             {
-                anim.SetBool("Chasing", false);
+                switch (enemyType)
+                {
+                    case type.Eye:
+                        anim.SetBool("Chasing", false);
+                        break;
+                    case type.BAA:
+                        anim.SetBool("Activated", false);
+                        break;
+                }
             }
+            rb.linearVelocity += Floating();
         }
-        else if(!knockbackDone)
+        else if (!knockbackDone)
         {
-            (float, int) knockbackInfo = stat.getKnockBackInfo();
             knockbackDone = true;
-            int direction = knockbackInfo.Item2;
-            float knockBackAmount = knockbackInfo.Item1 * knockbackMult;
             directionToPlayer = (gameObject.transform.position -
             player.transform.position).normalized;
-            rb.AddForce(KnockBackAmount * directionToPlayer);
+            print(directionToPlayer);
+            rb.linearVelocity = KnockBackAmount * directionToPlayer;
             //Debug.Log("Here");
             // Vector2 pos = gameObject.transform.position;
             // Debug.DrawLine(gameObject.transform.position, pos + (directionToPlayer * 3));
             /*Debug.Log("" + gameObject.transform.position + " : " + pos + (direction * 3)
             + " : " + direction);*/
         }
-        rb.linearVelocity += Floating();
     }
 
     Vector2 Floating()
@@ -126,17 +133,20 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(enemyPos, -gameObject.transform.up, floatHeight, whatToFloatFrom);
         Debug.DrawRay(enemyPos, -gameObject.transform.up * floatHeight, Color.red);
         //Debug.Log(hit.collider.gameObject.tag);
-        if (!hit.collider.gameObject.CompareTag("Enemy"))
+        if (hit)
         {
-            Debug.Log("Here");
-            addVel.y += maxSpeed;
+            if (!hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                Debug.Log("Here");
+                addVel.y += maxSpeed;
+            }
         }
         return addVel;
     }
 
     void Move()
     {
-        
+
         if (approaching)
         {
             rb.linearVelocity = directionToPlayer * speed;
@@ -164,7 +174,7 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         if (Vector2.Distance(playerPos, enemyPos) < shootingRange && attackTimer < 0.0001)
         {
             if (enemyType == type.Fly)
-            { 
+            {
                 anim.SetTrigger("Attacking");
             }
             GameObject go = Instantiate(projectile, enemyPos, Quaternion.Euler(directionToPlayer.x,
@@ -174,7 +184,15 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         }
         if (attackTimer > 0)
         {
-            attackTimer -= Time.deltaTime;    
+            attackTimer -= Time.deltaTime;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            player = collision.gameObject;
+            currentState = enemyState.hunt;
         }
     }
 }

@@ -144,6 +144,14 @@ public class EnemyMovementBasicMelee : MonoBehaviour
             }
         }
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            player = collision.gameObject;
+            currentState = enemyState.hunt;
+        }
+    }
 }
 
 public enum enemyState

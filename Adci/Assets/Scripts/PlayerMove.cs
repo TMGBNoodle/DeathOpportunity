@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Unity.Mathematics;
 
 //using System.Numerics;
@@ -13,6 +14,9 @@ using UnityEngine.UIElements;
 
 public class PlayerMove : MonoBehaviour
 {
+
+    public static PlayerMove Instance { get; private set; }
+
     public LineRenderer[] rayDebug;
     public Rigidbody2D rb;
     public PlayerInput playerInput;
@@ -20,8 +24,8 @@ public class PlayerMove : MonoBehaviour
     public SpriteRenderer sr;
     [SerializeField] GameObject slash;
 
-    float horizontalMove = 0;
-    float vertMove = 0;
+    public float horizontalMove = 0;
+    public float vertMove = 0;
 
     public float attackRange = 1.5f;
 
@@ -37,7 +41,6 @@ public class PlayerMove : MonoBehaviour
     float lastDash = -3;
 
     public float dashCooldown = 3;
-    [SerializeField]
     public (float, float) dashInfo;
 
     bool dashFlag = false;
@@ -83,7 +86,17 @@ public class PlayerMove : MonoBehaviour
     public Vector2 wallJumpParams = new Vector2(3, 8);
     Vector3 jumpDetectOffset = new Vector3(0, 0.5f);
     Vector3 wallDetectOffset = new Vector3(0.5f, 0);
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -121,7 +134,7 @@ public class PlayerMove : MonoBehaviour
             bool floorFound = false;
             foreach (Collider2D collision in collisions)
             {
-                if (collision.gameObject.tag == "Floor")
+                if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Floor"))
                 {
                     floorFound = true;
                     // if (Mathf.Abs(rb.linearVelocityY) <= 0.01f)
@@ -182,13 +195,23 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void addAbil(abilities ability)
+    {
+        switch (ability)
+        {
+            case abilities.swordUp:
+                
+                return;
+        }
+    }
+
     private bool checkWall()
     {
         Collider2D[] collisions1 = Physics2D.OverlapCircleAll(transform.position - wallDetectOffset, 0.2f);
         Collider2D[] collisions2 = Physics2D.OverlapCircleAll(transform.position + wallDetectOffset, 0.2f);
         foreach (Collider2D collision in collisions1)
         {
-            if (collision.gameObject.tag == "Wall")
+            if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Floor"))
             {
                 wallDir = 1;
                 anim.SetBool("Jumping", false);
@@ -197,7 +220,7 @@ public class PlayerMove : MonoBehaviour
         }
         foreach (Collider2D collision in collisions2)
         {
-            if (collision.gameObject.tag == "Wall")
+            if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Floor"))
             {
                 wallDir = -1;
                 anim.SetBool("Jumping", false);
@@ -253,12 +276,17 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void Abil(InputAction.CallbackContext ctx)
+    {
+        
+    }
     public void Attack(InputAction.CallbackContext ctx)
     {
         if ((Time.time - lastAttack) > attackCooldown)
         {
             print("Attack");
             slash.SetActive(true);
+            slash.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0.3f);
             Vector2 pos = gameObject.transform.position;
             pos.x += (attackRange - 0.1f) * facing;
             slash.transform.position = pos;
@@ -305,14 +333,17 @@ public class PlayerMove : MonoBehaviour
                 Debug.DrawRay(transform.position, offset * attackRange, Color.cyan, 5f);
                 foreach (RaycastHit2D hit in hits)
                 {
-                    Status status = hit.transform.gameObject.GetComponent<Status>();
-                    if (status && hit.transform.tag != "Player")
+                    if (!hit.collider.isTrigger)
                     {
-                        if (!hitEnemies.Contains(hit.transform.gameObject))
+                        Status status = hit.transform.gameObject.GetComponent<Status>();
+                        if (status && hit.transform.tag != "Player")
                         {
-                            hitEnemies.Add(hit.transform.gameObject);
-                            print("top hit");
-                            status.TakeDamage(playerDamage, knockbackMult, facing);
+                            if (!hitEnemies.Contains(hit.transform.gameObject))
+                            {
+                                hitEnemies.Add(hit.transform.gameObject);
+                                print("top hit");
+                                status.TakeDamage(playerDamage, knockbackMult, facing);
+                            }
                         }
                     }
                 }
@@ -322,14 +353,17 @@ public class PlayerMove : MonoBehaviour
             Debug.DrawRay(transform.position, attackRange * sOffset, Color.red, 5f);
             foreach (RaycastHit2D hit in sHits)
             {
-                Status status = hit.transform.gameObject.GetComponent<Status>();
-                if (status && hit.transform.tag != "Player")
+                if (!hit.collider.isTrigger)
                 {
-                    if (!hitEnemies.Contains(hit.transform.gameObject))
+                    Status status = hit.transform.gameObject.GetComponent<Status>();
+                    if (status && hit.transform.tag != "Player")
                     {
-                        hitEnemies.Add(hit.transform.gameObject);
-                        print("str hit");
-                        status.TakeDamage(playerDamage, knockbackMult, facing);
+                        if (!hitEnemies.Contains(hit.transform.gameObject))
+                        {
+                            hitEnemies.Add(hit.transform.gameObject);
+                            print("str hit");
+                            status.TakeDamage(playerDamage, knockbackMult, facing);
+                        }
                     }
                 }
             }
@@ -341,14 +375,17 @@ public class PlayerMove : MonoBehaviour
                 Debug.DrawRay(transform.position, offset * attackRange, Color.green, 5f);
                 foreach (RaycastHit2D hit in hits)
                 {
-                    Status status = hit.transform.gameObject.GetComponent<Status>();
-                    if (status && hit.transform.tag != "Player")
+                    if (!hit.collider.isTrigger)
                     {
-                        if (!hitEnemies.Contains(hit.transform.gameObject))
+                        Status status = hit.transform.gameObject.GetComponent<Status>();
+                        if (status && hit.transform.tag != "Player")
                         {
-                            print("bottom hit");
-                            hitEnemies.Add(hit.transform.gameObject);
-                            status.TakeDamage(playerDamage, knockbackMult, facing);
+                            if (!hitEnemies.Contains(hit.transform.gameObject))
+                            {
+                                print("bottom hit");
+                                hitEnemies.Add(hit.transform.gameObject);
+                                status.TakeDamage(playerDamage, knockbackMult, facing);
+                            }
                         }
                     }
                 }
@@ -360,4 +397,11 @@ public class PlayerMove : MonoBehaviour
     {
         slash.SetActive(false);
     }
+}
+
+public enum abilities
+{
+    swordUp,
+    flyProj,
+    bomber
 }
