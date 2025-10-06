@@ -50,6 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5da299decfdba641a9df6f33229951f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEnemies: []
+  abilCount: 0
+  projectileSpeed: 5
+  flyProjectile: {fileID: 1123949672657368397, guid: 058ed6eee42671243802b9317b37ffbb, type: 3}
+  activeAbilInd: 0
+  explosionPrefab: {fileID: 0}
   rayDebug: []
   rb: {fileID: 0}
   playerInput: {fileID: 4010629410989655593}
@@ -64,20 +70,24 @@ MonoBehaviour:
   dashTime: 0.1
   jumpPower: 10
   dashCooldown: 1
-  weaponOffset: 1.5
+  weaponOffset: 0.55
   attackCasts: 5
-  knockbackMult: 5
+  knockbackMult: 8
   castWidth: 1.5
   knockBackDir: {x: 1, y: 1}
   weapon: {fileID: 4761929968804206040}
+  abils: 010000000300000003000000
+  activeAbils: 030000000300000003000000
   playerDamage: 10
   lastAttack: -10
   attackCooldown: 0.5
   slashEffectLife: 0.2
   maxCats: 1
   currentCats: 0
+  attacking: 0
   stats: {fileID: 0}
   onWall: 0
+  attackDuration: 0.3
   wallJumpParams: {x: 3, y: 8}
 --- !u!114 &4010629410989655593
 MonoBehaviour:
@@ -228,6 +238,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1254643229349245128}
+        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
+        m_MethodName: Abil1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 711b30bf-8fd2-4eca-a649-0944e8e9fc9c
+    m_ActionName: 'Player/Ability1[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1254643229349245128}
+        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
+        m_MethodName: Abil2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 519b60be-2687-4d2b-9746-cd54d16c3b1f
+    m_ActionName: 'Player/Ability2[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

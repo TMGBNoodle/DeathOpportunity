@@ -114,10 +114,8 @@ public class EnemyMovementBasicMelee : MonoBehaviour
         {
             if (hit)
             {
-                print("Raycast hit something");
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    print("HitPlayer");
                     hit.transform.GetComponent<Status>().TakeDamage(damage, damageKnockbackMult, (int)Direction.x);
                 }
             }

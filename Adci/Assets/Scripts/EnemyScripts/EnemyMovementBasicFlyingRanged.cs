@@ -56,6 +56,7 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         speed = maxSpeed;
+        player = PlayerMove.Instance.gameObject;
         stat = GetComponent<Status>();
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
@@ -76,9 +77,17 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentState == enemyState.wander)
+        {
+            if ((transform.position - player.transform.position).magnitude < visionRange)
+            {
+                currentState = enemyState.hunt;
+            }
+        }
         if (!stat.KnockedBack)
         {
             flipSprite();
+            knockbackDone = false;
             if (currentState == enemyState.hunt)
             {
                 playerPos = player.transform.position;
@@ -90,6 +99,8 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
                         break;
                     case type.BAA:
                         anim.SetBool("Activated", true);
+                        break;
+                    case type.Fly:
                         break;
                 }
 
@@ -108,11 +119,13 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
                     case type.BAA:
                         anim.SetBool("Activated", false);
                         break;
+                    case type.Fly:
+                        break;
                 }
             }
             rb.linearVelocity += Floating();
         }
-        else if (!knockbackDone)
+        else
         {
             knockbackDone = true;
             directionToPlayer = (gameObject.transform.position -
@@ -185,14 +198,6 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;
-        }
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.CompareTag("Player"))
-        {
-            player = collision.gameObject;
-            currentState = enemyState.hunt;
         }
     }
 }
