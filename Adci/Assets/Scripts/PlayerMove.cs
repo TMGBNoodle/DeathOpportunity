@@ -105,7 +105,9 @@ public class PlayerMove : MonoBehaviour
     bool aFlag = false;
 
 
+    float bombCD = 5;
 
+    float lastBomb = -5.1f;
     float wallJumpCD = 0.5f;
 
     public Vector2 wallJumpParams = new Vector2(3, 8);
@@ -252,7 +254,7 @@ public class PlayerMove : MonoBehaviour
             switch (ability)
             {
                 case abilities.swordUp:
-                    attackRange = 5;
+                    attackRange += 5;
                     return;
                 case abilities.bomber:
                     activeAbils[activeAbilInd] = ability;
