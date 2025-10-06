@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Boolean[] Seen = new Boolean[Enemies.GetNames(typeof(Enemies)).Length];
     // public Boolean[] DiedTo = new Boolean[Enemies.GetNames(typeof(Enemies)).Length];
 
-    public Enemies[] diedTo = new Enemies[3];
+    public List<Enemies> diedTo = new List<Enemies>();
 
     public int currentDeaths = 0;
 
@@ -50,8 +51,13 @@ public class GameManager : MonoBehaviour
     {
         print("Adding killer");
         print(type);
-        diedTo[currentDeaths] = type;
+        diedTo.Add(type);
         currentDeaths += 1;
+    }
+
+    public List<Enemies> getKillers()
+    {
+        return diedTo;
     }
 }
 
