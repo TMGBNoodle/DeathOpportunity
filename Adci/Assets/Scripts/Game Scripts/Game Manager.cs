@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Enemies
 {
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void addKiller(Enemies type)
     {
+        SceneManager.LoadSceneAsync("DeathScene");
         print("Adding killer");
         print(type);
         diedTo.Add(type);

@@ -988,8 +988,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd662648249cb9ab8d7c9d797aea2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scripts:
+  - {fileID: 11400000, guid: bb96ea240f6dfff43ac3ff3ec61350bf, type: 2}
+  - {fileID: 11400000, guid: 9108e31a0e5ae9141b06ef2e5f5d9a17, type: 2}
+  - {fileID: 11400000, guid: 0f48fe0268e9fe74096edff1bf41ee73, type: 2}
   KilledBy: {fileID: 259227154}
   Description: {fileID: 285195108}
+  LivesLeft: {fileID: 0}
+  RestartButton: {fileID: 0}
 --- !u!1 &1934743672
 GameObject:
   m_ObjectHideFlags: 0

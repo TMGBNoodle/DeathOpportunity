@@ -4,6 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DeathScript", menuName = "Scriptable Objects/DeathScript")]
 public class DeathScript : ScriptableObject
 {
-    [SerializeField] Enemies Name;
-    [SerializeField] String AbilityDescription;
+    [SerializeField] public Enemies Name;
+    [SerializeField] public String AbilityDescription;
 }

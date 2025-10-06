@@ -15,8 +15,14 @@ public class DeathScreenController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        KilledBy.text = "Killed By: ";
-        Description.text = "ASDF";
+        if (GameManager.Instance.currentDeaths <= 0)
+        { 
+            RestartButton.interactable = false;
+        }
+        KilledBy.text = "Killed By: " + scripts[(int)GameManager.Instance.diedTo
+            [GameManager.Instance.currentDeaths]].name;
+        Description.text = scripts[(int)GameManager.Instance.diedTo
+            [GameManager.Instance.currentDeaths]].AbilityDescription;
         LivesLeft.text = "Lives Left: " + GameManager.Instance.LivesLeft;
     }
 
