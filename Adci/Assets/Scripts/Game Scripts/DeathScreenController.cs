@@ -20,7 +20,7 @@ public class DeathScreenController : MonoBehaviour
             RestartButton.interactable = false;
         }
         KilledBy.text = "Killed By: " + scripts[(int)GameManager.Instance.diedTo
-            [GameManager.Instance.currentDeaths]].name;
+            [GameManager.Instance.currentDeaths - 1]].name;
         Description.text = scripts[(int)GameManager.Instance.diedTo
             [GameManager.Instance.currentDeaths]].AbilityDescription;
         LivesLeft.text = "Lives Left: " + GameManager.Instance.LivesLeft;

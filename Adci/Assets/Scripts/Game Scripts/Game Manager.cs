@@ -53,12 +53,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("DeathScene");
         print("Adding killer");
         print(type);
-        diedTo.Add(type);
+        diedTo[currentDeaths] = type;
         currentDeaths += 1;
     }
 
     public List<Enemies> getKillers()
     {
+        if (currentDeaths <= 0)
+        {
+            return null;
+        }
         return diedTo;
     }
 }

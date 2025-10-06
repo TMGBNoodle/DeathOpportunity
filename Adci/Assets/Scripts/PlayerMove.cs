@@ -128,28 +128,32 @@ public class PlayerMove : MonoBehaviour
     }
     void Start()
     {
-        List<Enemies> killedBy = GameManager.Instance.getKillers();
-        foreach (Enemies enemy in killedBy)
-        {
-            switch (enemy)
-            {
-                case Enemies.Goomba:
-                    addAbil(abilities.swordUp);
-                    return;
-                case Enemies.Boombee:
-                    addAbil(abilities.bomber);
-                    return;       
-                case Enemies.Fly:
-                    addAbil(abilities.flyProj);
-                    return;                         
-            }
-        }
         rb = gameObject.GetComponent<Rigidbody2D>();
         slashRend = slash.GetComponent<SpriteRenderer>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         stats = gameObject.GetComponent<Status>();
         anim = gameObject.GetComponentInChildren<Animator>();
         sr = gameObject.GetComponentInChildren<SpriteRenderer>();
+        List<Enemies> killedBy = GameManager.Instance.getKillers();
+        if (killedBy != null)
+        { 
+            foreach (Enemies enemy in killedBy)
+            {
+                switch (enemy)
+                {
+                    case Enemies.Goomba:
+                        addAbil(abilities.swordUp);
+                        return;
+                    case Enemies.Boombee:
+                        addAbil(abilities.bomber);
+                        return;
+                    case Enemies.Fly:
+                        addAbil(abilities.flyProj);
+                        return;
+                }
+            }
+        }
+        
     }
 
     // Update is called once per frame
