@@ -18,13 +18,20 @@ public class DamageOnTouch : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.transform.CompareTag("Enemy"))
+        if (!collision.gameObject != gameObject)
         {
-            if (collision.gameObject.transform.CompareTag("Player"))
+            if (!collision.gameObject.CompareTag(gameObject.tag))
             {
-                collision.transform.GetComponent<Status>().TakeDamage(10);
+                Status stat = collision.transform.GetComponent<Status>();
+                if (stat)
+                {
+                    stat.TakeDamage(10);
+                }
             }
-
+            else
+            {
+                return;
+            }
             Destroy(gameObject);
         }
     }

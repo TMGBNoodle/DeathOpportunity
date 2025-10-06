@@ -17,6 +17,17 @@ public class PlayerMove : MonoBehaviour
 
     public static PlayerMove Instance { get; private set; }
 
+    public List<GameObject> hitEnemies
+    = new List<GameObject>();
+
+    public int abilCount = 0;
+
+    public float projectileSpeed = 5;
+
+    public GameObject flyProjectile;
+
+    public int activeAbilInd = 0;
+    public GameObject explosionPrefab;
     public LineRenderer[] rayDebug;
     public Rigidbody2D rb;
     public PlayerInput playerInput;
@@ -57,8 +68,12 @@ public class PlayerMove : MonoBehaviour
     public float castWidth = .66f;
 
     public Vector2 knockBackDir = new Vector2(0.7f, 0.5f);
-
+[SerializeField]
     public GameObject weapon;
+[SerializeField]
+    public abilities[] abils = new abilities[3] { abilities.flyProj, abilities.none, abilities.none };
+[SerializeField]
+    public abilities[] activeAbils = new abilities[3] { abilities.none, abilities.none, abilities.none };
 
     public float playerDamage = 10;
     public float lastAttack = -10;
@@ -69,6 +84,8 @@ public class PlayerMove : MonoBehaviour
     public int maxCats = 1;
 
     public int currentCats = 0;
+
+    public float attacking = 0;
     public Status stats;
 
     private bool knockbackDone = false;
@@ -77,15 +94,25 @@ public class PlayerMove : MonoBehaviour
 
     public bool onWall = false;
 
+    public float attackDuration = 0.3f;
+
     int wallDir = 0;
 
     float lastWallJump = -10;
+
+    float attackTime = 0;
+
+    bool aFlag = false;
+
+
 
     float wallJumpCD = 0.5f;
 
     public Vector2 wallJumpParams = new Vector2(3, 8);
     Vector3 jumpDetectOffset = new Vector3(0, 0.5f);
     Vector3 wallDetectOffset = new Vector3(0.5f, 0);
+
+    SpriteRenderer slashRend;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -100,6 +127,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        slashRend = slash.GetComponent<SpriteRenderer>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         stats = gameObject.GetComponent<Status>();
         anim = gameObject.GetComponentInChildren<Animator>();
@@ -115,7 +143,6 @@ public class PlayerMove : MonoBehaviour
         // bool canDash = timeSinceDash >= dashDebounce && dashCount < maxDashes;
         if (stats.KnockedBack)
         {
-            print("Player Knocked Back");
             if (!knockbackDone)
             {
                 anim.SetBool("Damaged", true);
@@ -128,6 +155,7 @@ public class PlayerMove : MonoBehaviour
         }
         else if (playerControl)
         {
+
             anim.SetBool("Damaged", false);
             knockbackDone = false;
             Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position - jumpDetectOffset, 0.05f);
@@ -164,11 +192,33 @@ public class PlayerMove : MonoBehaviour
             }
             rb.linearVelocityX = horizontalMove * speed;
             anim.SetBool("Walking", Math.Abs(rb.linearVelocityX) > 0.001);
+            if (attacking > 0)
+            {
+                aFlag = true;
+                print(attacking);
+                attacking -= Time.deltaTime;
+                attackTime += Time.deltaTime;
+                if (attackTime > (attackDuration / 2.05))
+                {
+                    attackTime = 0;
+                    doRaycastAttack();
+                }
+                float mod = (attackDuration - attacking) / attackDuration;
+                slashRend.color = new Color(mod * 255, mod * 255, mod * 255, mod * 1);
+            }
+            else if (aFlag)
+            {
+                aFlag = false;
+                hitEnemies.Clear();
+            }
         }
         else if (dashFlag)
         {
             // dist remaining / time remaining (s)  = dist/s required
             // time.deltaTime * dist req = tomove
+            attacking = 0;
+            slash.SetActive(false);
+
             float timeLeft = dashInfo.Item1;
             float distLeft = dashInfo.Item2;
             if (timeLeft <= 0)
@@ -197,11 +247,40 @@ public class PlayerMove : MonoBehaviour
 
     public void addAbil(abilities ability)
     {
-        switch (ability)
+        if (abilCount < 3)
         {
-            case abilities.swordUp:
-                
-                return;
+            switch (ability)
+            {
+                case abilities.swordUp:
+                    attackRange = 5;
+                    return;
+                case abilities.bomber:
+                    activeAbils[activeAbilInd] = ability;
+                    activeAbilInd += 1;
+                    return;
+                case abilities.flyProj:
+                    return;
+            }
+            abilCount += 1;
+            abils[abilCount] = ability;
+        }
+
+    }
+
+    public void bomb()
+    {
+        Collider2D[] explosionC = Physics2D.OverlapCircleAll(transform.position, 10);
+        foreach (Collider2D hit in explosionC)
+        {
+            Status status = hit.transform.gameObject.GetComponent<Status>();
+            if (status && hit.transform.tag != "Player")
+            {
+                if (!hitEnemies.Contains(hit.transform.gameObject))
+                {
+                    hitEnemies.Add(hit.transform.gameObject);
+                    status.TakeDamage(playerDamage, 15, facing);
+                }
+            }
         }
     }
 
@@ -246,7 +325,7 @@ public class PlayerMove : MonoBehaviour
             playerControl = false;
             lastDash = Time.time;
             dashFlag = true;
-            dashInfo = (dashTime, dashDist * horizontalMove);
+            dashInfo = (dashTime, dashDist * Math.Sign(horizontalMove));
         }
     }
 
@@ -254,39 +333,53 @@ public class PlayerMove : MonoBehaviour
     {
         if (knockbackDone)
         {
-            print("her");
             return;
         }
         else if (isGrounded)
         {
             isGrounded = false;
-            print("her2");
             anim.SetBool("Jumping", true);
             rb.linearVelocityY = jumpPower;
             isGrounded = false;
         }
         else if (onWall && Time.time - lastWallJump > wallJumpCD && currentCats < maxCats)
         {
-            print("her3");
             anim.SetBool("Jumping", true);
             currentCats += 1;
-            print("Wall Jump");
             lastWallJump = Time.time;
             rb.linearVelocity = new Vector2(wallDir, 1) * wallJumpParams;
         }
     }
 
-    public void Abil(InputAction.CallbackContext ctx)
+    public void Abil1(InputAction.CallbackContext ctx)
     {
-        
+        switch (activeAbils[0])
+        {
+            case abilities.bomber:
+                bomb();
+                return;
+        }
+    }
+
+    public void Abil2(InputAction.CallbackContext ctx)
+    {
+        switch (activeAbils[1])
+        {
+            case abilities.bomber:
+                bomb();
+                return;
+        }
     }
     public void Attack(InputAction.CallbackContext ctx)
     {
-        if ((Time.time - lastAttack) > attackCooldown)
+        if ((Time.time - lastAttack) > attackDuration)
         {
+            lastAttack = Time.time;
+            hitEnemies.Clear();
             print("Attack");
+            attacking = attackDuration;
             slash.SetActive(true);
-            slash.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0.3f);
+            slash.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.3f);
             Vector2 pos = gameObject.transform.position;
             pos.x += (attackRange - 0.1f) * facing;
             slash.transform.position = pos;
@@ -300,6 +393,17 @@ public class PlayerMove : MonoBehaviour
             }
             lastAttack = Time.time;
             Invoke("turnOffSlash", slashEffectLife);
+            if (abils.Contains(abilities.flyProj))
+            {
+                print("ShootFlyProj");
+                Vector3 unProcessed = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 mousePos = new Vector3(unProcessed.x, unProcessed.y, 0);
+                Vector3 directionToMouse = (mousePos - gameObject.transform.position).normalized;
+                GameObject go = Instantiate(flyProjectile, transform.position, Quaternion.Euler(directionToMouse.x, directionToMouse.y, 0));
+                go.GetComponent<Rigidbody2D>().linearVelocity = directionToMouse.normalized * projectileSpeed;
+            }
+            doRaycastAttack();
+            
             //facing angle will either be (1, 0) or (-1, 0)
             //angle for facing angle is s = o/h
             // sin(x) = 1/h h = attackRange
@@ -307,86 +411,82 @@ public class PlayerMove : MonoBehaviour
             // sin(pi/2)
             // max = (pi/2) - (castTotalAngle/2)
             // min = (pi/2) + (castTotalAngle/2)
-            float castRad = Mathf.Abs((castWidth / 2));
-            float midPoint;
-            if (facing == 1)
+        }
+    }
+
+    public void doRaycastAttack()
+    {
+        float castRad = Mathf.Abs((castWidth / 2));
+        float midPoint;
+        if (facing == 1)
+        {
+            midPoint = Mathf.PI / 2;
+        }
+        else
+        {
+            midPoint = (3 * Mathf.PI) / 2;
+        }
+        float topAngle = midPoint - castRad;
+        float bottomAngle = midPoint + castRad;
+        float step = castRad / attackCasts;
+        //Attack casts counts how many rays will be fired. This is the count for EACH SIDE, top and bottom
+        //So with attackCasts = 3 there will be 3 rays on top of the straight ray, and 3 on the bottom
+        //for a total of 7. 
+        for (int i = 0; i < attackCasts; i++)
+        {
+            float angle = topAngle + (i * step);
+            Vector3 offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, offset, attackRange);
+            Debug.DrawRay(transform.position, offset * attackRange, Color.cyan, 5f);
+            foreach (RaycastHit2D hit in hits)
             {
-                midPoint = Mathf.PI / 2;
-            }
-            else
-            {
-                midPoint = (3 * Mathf.PI) / 2;
-            }
-            float topAngle = midPoint - castRad;
-            float bottomAngle = midPoint + castRad;
-            float step = castRad / attackCasts;
-            //Attack casts counts how many rays will be fired. This is the count for EACH SIDE, top and bottom
-            //So with attackCasts = 3 there will be 3 rays on top of the straight ray, and 3 on the bottom
-            //for a total of 7. 
-            List<GameObject> hitEnemies
-            = new List<GameObject>();
-            for (int i = 0; i < attackCasts; i++)
-            {
-                float angle = topAngle + (i * step);
-                Vector3 offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
-                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, offset, attackRange);
-                Debug.DrawRay(transform.position, offset * attackRange, Color.cyan, 5f);
-                foreach (RaycastHit2D hit in hits)
+                Status status = hit.transform.gameObject.GetComponent<Status>();
+                if (status && hit.transform.tag != "Player")
                 {
-                    if (!hit.collider.isTrigger)
+                    print("Top attempting hit");
+                    if (!hitEnemies.Contains(hit.transform.gameObject))
                     {
-                        Status status = hit.transform.gameObject.GetComponent<Status>();
-                        if (status && hit.transform.tag != "Player")
-                        {
-                            if (!hitEnemies.Contains(hit.transform.gameObject))
-                            {
-                                hitEnemies.Add(hit.transform.gameObject);
-                                print("top hit");
-                                status.TakeDamage(playerDamage, knockbackMult, facing);
-                            }
-                        }
+                        hitEnemies.Add(hit.transform.gameObject);
+                        print("top hit");
+                        status.TakeDamage(playerDamage, knockbackMult, facing);
                     }
                 }
             }
-            Vector3 sOffset = new Vector3(Mathf.Sin(midPoint), Mathf.Cos(midPoint));
-            RaycastHit2D[] sHits = Physics2D.RaycastAll(transform.position, sOffset, attackRange);
-            Debug.DrawRay(transform.position, attackRange * sOffset, Color.red, 5f);
-            foreach (RaycastHit2D hit in sHits)
+        }
+        Vector3 sOffset = new Vector3(Mathf.Sin(midPoint), Mathf.Cos(midPoint));
+        RaycastHit2D[] sHits = Physics2D.RaycastAll(transform.position, sOffset, attackRange);
+        Debug.DrawRay(transform.position, attackRange * sOffset, Color.red, 5f);
+        foreach (RaycastHit2D hit in sHits)
+        {
+            print(hit.collider.gameObject.name);
+            Status status = hit.transform.gameObject.GetComponent<Status>();
+            if (status && !hit.transform.CompareTag("Player"))
             {
-                if (!hit.collider.isTrigger)
+                if (!hitEnemies.Contains(hit.transform.gameObject))
                 {
-                    Status status = hit.transform.gameObject.GetComponent<Status>();
-                    if (status && hit.transform.tag != "Player")
-                    {
-                        if (!hitEnemies.Contains(hit.transform.gameObject))
-                        {
-                            hitEnemies.Add(hit.transform.gameObject);
-                            print("str hit");
-                            status.TakeDamage(playerDamage, knockbackMult, facing);
-                        }
-                    }
+                    hitEnemies.Add(hit.transform.gameObject);
+                    print("str hit");
+                    status.TakeDamage(playerDamage, knockbackMult, facing);
                 }
             }
-            for (int i = 0; i < attackCasts; i++)
+        }
+        for (int i = 0; i < attackCasts; i++)
+        {
+            float angle = bottomAngle - (i * step);
+            Vector3 offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, offset, attackRange);
+            Debug.DrawRay(transform.position, offset * attackRange, Color.green, 5f);
+            foreach (RaycastHit2D hit in hits)
             {
-                float angle = bottomAngle - (i * step);
-                Vector3 offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
-                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, offset, attackRange);
-                Debug.DrawRay(transform.position, offset * attackRange, Color.green, 5f);
-                foreach (RaycastHit2D hit in hits)
+                print(hit.collider.gameObject.name);
+                Status status = hit.transform.gameObject.GetComponent<Status>();
+                if (status && hit.transform.tag != "Player")
                 {
-                    if (!hit.collider.isTrigger)
+                    if (!hitEnemies.Contains(hit.transform.gameObject))
                     {
-                        Status status = hit.transform.gameObject.GetComponent<Status>();
-                        if (status && hit.transform.tag != "Player")
-                        {
-                            if (!hitEnemies.Contains(hit.transform.gameObject))
-                            {
-                                print("bottom hit");
-                                hitEnemies.Add(hit.transform.gameObject);
-                                status.TakeDamage(playerDamage, knockbackMult, facing);
-                            }
-                        }
+                        print("bottom hit");
+                        hitEnemies.Add(hit.transform.gameObject);
+                        status.TakeDamage(playerDamage, knockbackMult, facing);
                     }
                 }
             }
@@ -399,9 +499,11 @@ public class PlayerMove : MonoBehaviour
     }
 }
 
+[Serializable]
 public enum abilities
 {
     swordUp,
     flyProj,
-    bomber
+    bomber,
+    none
 }
