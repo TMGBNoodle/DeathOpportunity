@@ -8,6 +8,8 @@ public class DamageOnTouch : MonoBehaviour
     //[ShowIf("hasTimeLimit")]
     [SerializeField] float timeLimit = 5;
 
+    public Enemies shotBy;
+
     void Start()
     {
         if (hasTimeLimit)
@@ -22,7 +24,11 @@ public class DamageOnTouch : MonoBehaviour
         {
             if (!collision.gameObject.CompareTag(gameObject.tag))
             {
-                collision.transform.GetComponent<Status>().TakeDamage(10, 0, -1);
+                Status stat = collision.transform.GetComponent<Status>();
+                if (stat)
+                {
+                    stat.TakeDamage(10, shotBy);
+                }
             }
             else
             {

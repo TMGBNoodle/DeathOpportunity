@@ -44,11 +44,48 @@ public class Status : MonoBehaviour
         currentEffects[effect] = false;
     }
 
+    private void CheckDestroyed(Enemies lastDamager)
+    {
+        if (Health <= 0)
+        {
+            print("Something attacked by");
+            print(lastDamager);
+            if (gameObject == PlayerMove.Instance.gameObject)
+            {
+                print("Player Dying");
+                GameManager.Instance.addKiller(lastDamager);
+                Destroy(gameObject);
+            }
+        }
+    }
+
     private void CheckDestroyed()
     {
         if (Health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void TakeDamage(float damage, float knockBackMultiplier, int direction, Enemies attacker)
+    {
+        if (!currentEffects[effects.attacking])
+        {
+            if (!currentEffects[effects.dash] && !KnockedBack)
+            {
+                Health -= damage;
+                CheckDestroyed(attacker);
+                if (canKnockback)
+                {
+                    Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+                    if (rb)
+                    {
+                        KnockedBack = true;
+                        lastKnockbackDone = (knockBackMultiplier, direction);
+                        Invoke("knockbackDone", knockBackLength);
+                    }
+                }
+            }
         }
     }
 
@@ -74,6 +111,7 @@ public class Status : MonoBehaviour
         }
     }
 
+
     public void TakeDamage(float damage)
     {
         if (!currentEffects[effects.attacking])
@@ -82,6 +120,17 @@ public class Status : MonoBehaviour
             {
                 Health -= damage;
                 CheckDestroyed();
+            }
+        }
+    }
+    public void TakeDamage(float damage, Enemies shotBy)
+    {
+        if (!currentEffects[effects.attacking])
+        {
+            if (!currentEffects[effects.dash] && !KnockedBack)
+            {
+                Health -= damage;
+                CheckDestroyed(shotBy);
             }
         }
     }

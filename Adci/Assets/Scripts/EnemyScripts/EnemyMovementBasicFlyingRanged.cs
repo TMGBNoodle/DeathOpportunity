@@ -7,13 +7,7 @@ using UnityEngine;
 
 public class EnemyMovementBasicFlyingRanged : MonoBehaviour
 {
-    private enum type
-    {
-        Fly,
-        Eye,
-        BAA
-    }
-    [SerializeField] type enemyType = type.Fly;
+    [SerializeField] enemyType enemyType = enemyType.Fly;
     [SerializeField] float visionRange = 10;
     GameObject player;
 
@@ -88,19 +82,19 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
         {
             flipSprite();
             knockbackDone = false;
-            if (currentState == enemyState.hunt)
+            if (currentState == enemyState.hunt && PlayerMove.Instance)
             {
                 playerPos = player.transform.position;
                 enemyPos = gameObject.transform.position;
                 switch (enemyType)
                 {
-                    case type.Eye:
+                    case enemyType.Eye:
                         anim.SetBool("Chasing", true);
                         break;
-                    case type.BAA:
+                    case enemyType.BAA:
                         anim.SetBool("Activated", true);
                         break;
-                    case type.Fly:
+                    case enemyType.Fly:
                         break;
                 }
 
@@ -113,13 +107,13 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
             {
                 switch (enemyType)
                 {
-                    case type.Eye:
+                    case enemyType.Eye:
                         anim.SetBool("Chasing", false);
                         break;
-                    case type.BAA:
+                    case enemyType.BAA:
                         anim.SetBool("Activated", false);
                         break;
-                    case type.Fly:
+                    case enemyType.Fly:
                         break;
                 }
             }
@@ -186,13 +180,23 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
     {
         if (Vector2.Distance(playerPos, enemyPos) < shootingRange && attackTimer < 0.0001)
         {
-            if (enemyType == type.Fly)
+            if (enemyType == enemyType.Fly)
             {
                 anim.SetTrigger("Attacking");
             }
             GameObject go = Instantiate(projectile, enemyPos, Quaternion.Euler(directionToPlayer.x,
              directionToPlayer.y, 0));
             go.GetComponent<Rigidbody2D>().linearVelocity = directionToPlayer.normalized * projectileSpeed;
+            switch (enemyType)
+                {
+                    case enemyType.Eye:
+                        break;
+                    case enemyType.BAA:
+                        break;
+                    case enemyType.Fly:
+                    go.GetComponent<DamageOnTouch>().shotBy = Enemies.Fly;
+                        break;
+                }
             attackTimer = attackDelay;
         }
         if (attackTimer > 0)
@@ -200,4 +204,12 @@ public class EnemyMovementBasicFlyingRanged : MonoBehaviour
             attackTimer -= Time.deltaTime;
         }
     }
+}
+
+public enum enemyType
+{
+    Fly,
+    Eye,
+    BAA,
+    Worm
 }
