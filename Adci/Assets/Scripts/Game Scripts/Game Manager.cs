@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public Boolean[] Seen = new Boolean[Enemies.GetNames(typeof(Enemies)).Length];
     public Boolean[] DiedTo = new Boolean[Enemies.GetNames(typeof(Enemies)).Length];
 
+    public int LivesLeft = 3;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -39,3 +41,5 @@ public class GameManager : MonoBehaviour
 
     }
 }
+
+
